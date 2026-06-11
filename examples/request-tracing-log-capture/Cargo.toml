@@ -1,0 +1,18 @@
+[package]
+name = "request-tracing-log-capture"
+version = "0.1.0"
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+[dependencies]
+bluetape-rs-core.workspace = true
+bluetape-rs-logging.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+
+[dev-dependencies]
+bluetape-rs-logging.workspace = true
+

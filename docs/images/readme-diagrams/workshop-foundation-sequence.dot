@@ -1,0 +1,19 @@
+digraph "Milestone 0.1.0 sequence" {
+  graph [rankdir=TB, bgcolor="transparent", pad="0.4", nodesep="0.5", ranksep="0.55"];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=12, margin="0.12,0.08", color="#2f3437", fillcolor="#f8fafc"];
+  edge [fontname="Arial", fontsize=10, color="#4b5563", arrowsize=0.8];
+
+  raw [label="1. Receive partner row", fillcolor="#e0f2fe"];
+  validate [label="2. Validate required fields\nbluetape-rs-core", fillcolor="#eef2ff"];
+  normalize [label="3. Normalize order payload\nfoundation-order-cleanup", fillcolor="#dcfce7"];
+  log [label="4. Emit captured log\nbluetape-rs-logging", fillcolor="#fef3c7"];
+  scratch [label="5. Write isolated artifact\nbluetape-rs-test", fillcolor="#fae8ff"];
+  assert [label="6. Assert output, log, cleanup", fillcolor="#f1f5f9"];
+
+  raw -> validate;
+  validate -> normalize;
+  normalize -> log;
+  log -> scratch;
+  scratch -> assert;
+}
+

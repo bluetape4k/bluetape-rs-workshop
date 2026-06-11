@@ -1,0 +1,17 @@
+digraph "request-tracing-log-capture flow" {
+  graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.55", ranksep="0.65"];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=12, margin="0.12,0.08", color="#1f2937", fillcolor="#f8fafc"];
+  edge [fontname="Arial", fontsize=10, color="#334155", arrowsize=0.8];
+
+  request [label="Request input\ncorrelation + route + status", fillcolor="#e0f2fe"];
+  validate [label="validate route/status\nbluetape-rs-core", fillcolor="#eef2ff"];
+  id [label="CorrelationId::new\nsafe single-line id", fillcolor="#dcfce7"];
+  event [label="tracing info event\nstructured fields", fillcolor="#fef3c7"];
+  capture [label="CapturedLogs\nassert event text", fillcolor="#fae8ff"];
+
+  request -> validate;
+  validate -> id;
+  id -> event;
+  event -> capture;
+}
+

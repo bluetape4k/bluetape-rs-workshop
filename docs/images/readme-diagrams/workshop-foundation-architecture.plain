@@ -1,0 +1,18 @@
+graph 1 13.147 6.625
+node input 0.83875 5.0694 1.6462 0.5 "Partner Order Input" rounded,filled box #2f3437 #e0f2fe
+node cleanup 4.1308 4.75 2.1358 0.55583 "foundation-order-cleanup\nvalidation + normalization" rounded,filled box #2f3437 #dcfce7
+node tracing 8.1677 4.0278 2.2296 0.55583 "request-tracing-log-capture\ncorrelation-aware logs" rounded,filled box #2f3437 #fef3c7
+node scratch 12.017 1.4861 2.2608 0.55583 "temp-resource-test-harness\ntemporary files" rounded,filled box #2f3437 #fae8ff
+node core 0.83875 3.125 1.4483 0.5 "bluetape-rs-core" rounded,filled box #2f3437 #eef2ff
+node logging 0.83875 6.375 1.6775 0.5 "bluetape-rs-logging" rounded,filled box #2f3437 #eef2ff
+node test 8.1677 0.25 1.3858 0.5 "bluetape-rs-test" rounded,filled box #2f3437 #eef2ff
+edge input cleanup 4 1.6679 4.9897 2.0496 4.9523 2.5115 4.9071 2.9309 4.8661 rows 2.3702 5.0217 solid #4b5563
+edge cleanup tracing 4 5.2033 4.5593 5.7317 4.4641 6.3739 4.3484 6.9241 4.2493 "request context" 6.1258 4.5581 solid #4b5563
+edge tracing scratch 4 8.6089 3.7436 9.3106 3.2769 10.705 2.3492 11.471 1.8404 "test artifact" 10.085 3.0679 solid #4b5563
+edge core cleanup 4 1.4816 3.4381 2.0788 3.7354 2.9687 4.1784 3.5459 4.4657 validate 2.3702 4.0696 solid #4b5563
+edge core tracing 4 1.6938 3.229 3.0153 3.3924 5.5783 3.7093 7.0475 3.891 validate 4.1308 3.7346 solid #4b5563
+edge core scratch 4 1.6933 3.0014 3.6756 2.7101 8.643 1.98 10.88 1.6512 validate 6.1258 2.502 solid #4b5563
+edge logging cleanup 4 1.4816 6.0619 2.0788 5.7646 2.9687 5.3216 3.5459 5.0343 capture 2.3702 5.7914 solid #4b5563
+edge logging tracing 10 1.8122 6.1949 2.0701 6.1437 2.3485 6.086 2.6046 6.0278 4.4149 5.6161 4.9005 5.5511 6.5946 4.7917 6.9315 4.6406 7.303 4.4592 7.5989 4.3111 capture 4.1308 5.997 solid #4b5563
+edge test scratch 7 8.9916 0.43149 9.4225 0.53525 9.9589 0.67594 10.428 0.83333 10.745 0.93964 11.089 1.0793 11.375 1.2021 "temp dir" 10.085 0.91667 solid #4b5563
+stop

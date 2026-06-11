@@ -1,0 +1,22 @@
+[workspace]
+members = [
+    "examples/foundation-order-cleanup",
+    "examples/request-tracing-log-capture",
+    "examples/temp-resource-test-harness",
+]
+resolver = "3"
+
+[workspace.package]
+edition = "2024"
+rust-version = "1.85"
+license = "MIT"
+repository = "https://github.com/bluetape4k/bluetape-rs-workshop"
+
+[workspace.dependencies]
+bluetape-rs-core = "0.3.1"
+bluetape-rs-logging = "0.3.1"
+bluetape-rs-test = "0.3.1"
+thiserror = "2.0.17"
+tokio = { version = "1.48.0", default-features = false, features = ["macros", "rt", "time"] }
+tracing = "0.1.41"
+

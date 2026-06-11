@@ -1,0 +1,19 @@
+digraph "foundation-order-cleanup flow" {
+  graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.55", ranksep="0.65"];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=12, margin="0.12,0.08", color="#1f2937", fillcolor="#f8fafc"];
+  edge [fontname="Arial", fontsize=10, color="#334155", arrowsize=0.8];
+
+  row [label="PartnerRow\nraw tenant/order/items", fillcolor="#e0f2fe"];
+  validate [label="require_not_blank\nrequired fields", fillcolor="#eef2ff"];
+  normalize [label="blank_to_default\noptional fields", fillcolor="#dcfce7"];
+  skip [label="skip invalid items\nblank sku or qty <= 0", fillcolor="#fee2e2"];
+  report [label="CleanupReport\norders + skipped count", fillcolor="#fef3c7"];
+  logs [label="CapturedLogs\ncorrelation.id", fillcolor="#fae8ff"];
+
+  row -> validate;
+  validate -> normalize;
+  normalize -> skip;
+  skip -> report;
+  report -> logs;
+}
+

@@ -1,0 +1,13 @@
+graph 1 1.9171 6.5989
+node row 0.95854 6.321 1.8754 0.55583 "PartnerRow\nraw tenant/order/items" rounded,filled box #1f2937 #e0f2fe
+node validate 0.95854 5.1124 1.5837 0.55583 "require_not_blank\nrequired fields" rounded,filled box #1f2937 #eef2ff
+node normalize 0.95854 3.9038 1.4692 0.55583 "blank_to_default\noptional fields" rounded,filled box #1f2937 #dcfce7
+node skip 0.95854 2.6951 1.7608 0.55583 "skip invalid items\nblank sku or qty <= 0" rounded,filled box #1f2937 #fee2e2
+node report 0.95854 1.4865 1.9171 0.55583 "CleanupReport\norders + skipped count" rounded,filled box #1f2937 #fef3c7
+node logs 0.95854 0.27792 1.2921 0.55583 "CapturedLogs\ncorrelation.id" rounded,filled box #1f2937 #fae8ff
+edge row validate 4 0.95854 6.0391 0.95854 5.8866 0.95854 5.6928 0.95854 5.5229 solid #334155
+edge validate normalize 4 0.95854 4.8305 0.95854 4.678 0.95854 4.4842 0.95854 4.3143 solid #334155
+edge normalize skip 4 0.95854 3.6219 0.95854 3.4694 0.95854 3.2755 0.95854 3.1057 solid #334155
+edge skip report 4 0.95854 2.4133 0.95854 2.2608 0.95854 2.0669 0.95854 1.8971 solid #334155
+edge report logs 4 0.95854 1.2047 0.95854 1.0522 0.95854 0.85832 0.95854 0.68849 solid #334155
+stop

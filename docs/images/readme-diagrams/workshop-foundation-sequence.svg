@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Milestone 0.1.0 Sequence</title>
+  <desc id="desc">Sequence diagram for the bluetape-rs workshop foundation walkthrough.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#334155"/>
+    </marker>
+    <style>
+      text { font-family: Arial, sans-serif; fill: #111827; }
+      .title { font-size: 34px; font-weight: 700; }
+      .subtitle { font-size: 18px; fill: #475569; }
+      .box { stroke: #1f2937; stroke-width: 2; rx: 12; }
+      .label { font-size: 19px; font-weight: 700; }
+      .small { font-size: 15px; fill: #334155; }
+      .edge { stroke: #334155; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="1280" height="720" fill="#ffffff"/>
+  <text x="64" y="70" class="title">Milestone 0.1.0 Sequence</text>
+  <text x="64" y="104" class="subtitle">From raw partner input to validated output, captured logs, and isolated test files</text>
+
+  <rect x="94" y="164" width="250" height="82" class="box" fill="#e0f2fe"/>
+  <text x="122" y="200" class="label">1. Receive partner row</text>
+  <text x="122" y="226" class="small">raw order payload</text>
+
+  <rect x="402" y="164" width="250" height="82" class="box" fill="#eef2ff"/>
+  <text x="430" y="200" class="label">2. Validate fields</text>
+  <text x="430" y="226" class="small">bluetape-rs-core</text>
+
+  <rect x="710" y="164" width="300" height="82" class="box" fill="#dcfce7"/>
+  <text x="738" y="200" class="label">3. Normalize order</text>
+  <text x="738" y="226" class="small">foundation-order-cleanup</text>
+
+  <rect x="710" y="338" width="300" height="82" class="box" fill="#fef3c7"/>
+  <text x="738" y="374" class="label">4. Emit captured log</text>
+  <text x="738" y="400" class="small">bluetape-rs-logging</text>
+
+  <rect x="402" y="338" width="250" height="82" class="box" fill="#fae8ff"/>
+  <text x="430" y="374" class="label">5. Write artifact</text>
+  <text x="430" y="400" class="small">bluetape-rs-test</text>
+
+  <rect x="94" y="338" width="250" height="82" class="box" fill="#f1f5f9"/>
+  <text x="122" y="374" class="label">6. Assert result</text>
+  <text x="122" y="400" class="small">output, log, cleanup</text>
+
+  <path d="M344 205 L402 205" class="edge"/>
+  <path d="M652 205 L710 205" class="edge"/>
+  <path d="M860 246 L860 338" class="edge"/>
+  <path d="M710 379 L652 379" class="edge"/>
+  <path d="M402 379 L344 379" class="edge"/>
+  <path d="M219 338 C219 302, 219 282, 219 246" class="edge"/>
+</svg>

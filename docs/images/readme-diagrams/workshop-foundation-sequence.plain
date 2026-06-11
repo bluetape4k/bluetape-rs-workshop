@@ -1,0 +1,13 @@
+graph 1 2.3754 6.0011
+node raw 1.1877 5.7511 1.9067 0.5 "1. Receive partner row" rounded,filled box #2f3437 #e0f2fe
+node validate 1.1877 4.6676 2.1046 0.55583 "2. Validate required fields\nbluetape-rs-core" rounded,filled box #2f3437 #eef2ff
+node normalize 1.1877 3.5562 2.24 0.55583 "3. Normalize order payload\nfoundation-order-cleanup" rounded,filled box #2f3437 #dcfce7
+node log 1.1877 2.4449 1.7087 0.55583 "4. Emit captured log\nbluetape-rs-logging" rounded,filled box #2f3437 #fef3c7
+node scratch 1.1877 1.3335 1.9587 0.55583 "5. Write isolated artifact\nbluetape-rs-test" rounded,filled box #2f3437 #fae8ff
+node assert 1.1877 0.25 2.3754 0.5 "6. Assert output, log, cleanup" rounded,filled box #2f3437 #f1f5f9
+edge raw validate 4 1.1877 5.4977 1.1877 5.3741 1.1877 5.2202 1.1877 5.0794 solid #4b5563
+edge validate normalize 4 1.1877 4.3859 1.1877 4.2596 1.1877 4.1063 1.1877 3.9668 solid #4b5563
+edge normalize log 4 1.1877 3.2745 1.1877 3.1482 1.1877 2.9949 1.1877 2.8554 solid #4b5563
+edge log scratch 4 1.1877 2.1631 1.1877 2.0368 1.1877 1.8835 1.1877 1.744 solid #4b5563
+edge scratch assert 4 1.1877 1.0532 1.1877 0.92675 1.1877 0.77353 1.1877 0.63586 solid #4b5563
+stop
