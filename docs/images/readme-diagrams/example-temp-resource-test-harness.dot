@@ -1,16 +1,14 @@
-digraph "temp-resource-test-harness flow" {
-  graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.55", ranksep="0.65"];
-  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=12, margin="0.12,0.08", color="#1f2937", fillcolor="#f8fafc"];
-  edge [fontname="Arial", fontsize=10, color="#334155", arrowsize=0.8];
-
-  config [label="ScratchConfig\nprefix + file_name", fillcolor="#e0f2fe"];
-  validate [label="validate fields\nreject path escape", fillcolor="#eef2ff"];
-  temp [label="TempDir::new\nisolated workspace", fillcolor="#dcfce7"];
-  file [label="fs::write\nscratch artifact", fillcolor="#fef3c7"];
-  cleanup [label="close()\nremove temp dir", fillcolor="#fae8ff"];
-
-  config -> validate;
-  validate -> temp;
-  temp -> file;
-  file -> cleanup;
+digraph "example-temp-resource-test-harness" {
+  graph [rankdir=LR, bgcolor="#fbfaf6", margin=0.2, nodesep=0.75, ranksep=0.9];
+  node [shape=box, style="rounded,filled", fontname="Architects Daughter", fontsize=18, color="#48758d", fillcolor="#d7ecf2"];
+  edge [fontname="Comic Mono", fontsize=11, color="#47616f", fontcolor="#35505f", penwidth=2];
+  step0 [label="ScratchConfig\nprefix + file_name", fillcolor="#d7ecf2", color="#48758d"];
+  step1 [label="Path Safety\nreject absolute or parent paths", fillcolor="#edf1e9", color="#91a08c"];
+  step2 [label="TempDir\nisolated workspace", fillcolor="#dbe8d4", color="#5d8a62"];
+  step3 [label="Scratch File\nwrite rows", fillcolor="#f7e5aa", color="#b99b5d"];
+  step4 [label="Close\nremove temp dir", fillcolor="#eadcf5", color="#8a6bb0"];
+  step0 -> step1 [label="", color="#47616f", fontcolor="#47616f"];
+  step1 -> step2 [label="", color="#47616f", fontcolor="#47616f"];
+  step2 -> step3 [label="", color="#47616f", fontcolor="#47616f"];
+  step3 -> step4 [label="", color="#47616f", fontcolor="#47616f"];
 }

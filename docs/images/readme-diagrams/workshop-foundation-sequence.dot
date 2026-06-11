@@ -1,19 +1,15 @@
-digraph "Milestone 0.1.0 sequence" {
-  graph [rankdir=TB, bgcolor="transparent", pad="0.4", nodesep="0.5", ranksep="0.55"];
-  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=12, margin="0.12,0.08", color="#2f3437", fillcolor="#f8fafc"];
-  edge [fontname="Arial", fontsize=10, color="#4b5563", arrowsize=0.8];
-
-  raw [label="1. Receive partner row", fillcolor="#e0f2fe"];
-  validate [label="2. Validate required fields\nbluetape-rs-core", fillcolor="#eef2ff"];
-  normalize [label="3. Normalize order payload\nfoundation-order-cleanup", fillcolor="#dcfce7"];
-  log [label="4. Emit captured log\nbluetape-rs-logging", fillcolor="#fef3c7"];
-  scratch [label="5. Write isolated artifact\nbluetape-rs-test", fillcolor="#fae8ff"];
-  assert [label="6. Assert output, log, cleanup", fillcolor="#f1f5f9"];
-
-  raw -> validate;
-  validate -> normalize;
-  normalize -> log;
-  log -> scratch;
-  scratch -> assert;
+digraph "workshop-foundation-sequence" {
+  graph [rankdir=LR, bgcolor="#fbfaf6", margin=0.2, nodesep=0.75, ranksep=0.9];
+  node [shape=box, style="rounded,filled", fontname="Architects Daughter", fontsize=18, color="#48758d", fillcolor="#d7ecf2"];
+  edge [fontname="Comic Mono", fontsize=11, color="#47616f", fontcolor="#35505f", penwidth=2];
+  learner [label="Learner\nruns tests", fillcolor="#d7ecf2", color="#48758d"];
+  cleanup [label="Cleanup Example\nnormalize rows", fillcolor="#dbe8d4", color="#5d8a62"];
+  logging [label="Logging Example\ncapture event", fillcolor="#f7e5aa", color="#b99b5d"];
+  scratch [label="Temp Resource\nwrite artifact", fillcolor="#eadcf5", color="#8a6bb0"];
+  learner -> cleanup [label="1. normalize partner rows", color="#47616f", fontcolor="#47616f"];
+  cleanup -> learner [label="validated order", color="#4f8b63", fontcolor="#4f8b63"];
+  learner -> logging [label="2. assert correlation log", color="#a78335", fontcolor="#a78335"];
+  logging -> learner [label="captured text", color="#4f8b63", fontcolor="#4f8b63"];
+  learner -> scratch [label="3. write scratch rows", color="#47616f", fontcolor="#47616f"];
+  scratch -> learner [label="cleanup verified", color="#4f8b63", fontcolor="#4f8b63"];
 }
-

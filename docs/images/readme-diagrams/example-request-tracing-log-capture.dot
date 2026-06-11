@@ -1,17 +1,14 @@
-digraph "request-tracing-log-capture flow" {
-  graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.55", ranksep="0.65"];
-  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=12, margin="0.12,0.08", color="#1f2937", fillcolor="#f8fafc"];
-  edge [fontname="Arial", fontsize=10, color="#334155", arrowsize=0.8];
-
-  request [label="Request input\ncorrelation + route + status", fillcolor="#e0f2fe"];
-  validate [label="validate route/status\nbluetape-rs-core", fillcolor="#eef2ff"];
-  id [label="CorrelationId::new\nsafe single-line id", fillcolor="#dcfce7"];
-  event [label="tracing info event\nstructured fields", fillcolor="#fef3c7"];
-  capture [label="CapturedLogs\nassert event text", fillcolor="#fae8ff"];
-
-  request -> validate;
-  validate -> id;
-  id -> event;
-  event -> capture;
+digraph "example-request-tracing-log-capture" {
+  graph [rankdir=LR, bgcolor="#fbfaf6", margin=0.2, nodesep=0.75, ranksep=0.9];
+  node [shape=box, style="rounded,filled", fontname="Architects Daughter", fontsize=18, color="#48758d", fillcolor="#d7ecf2"];
+  edge [fontname="Comic Mono", fontsize=11, color="#47616f", fontcolor="#35505f", penwidth=2];
+  step0 [label="Request Input\ncorrelation + route + status", fillcolor="#d7ecf2", color="#48758d"];
+  step1 [label="Route + Status\nvalidate before logging", fillcolor="#edf1e9", color="#91a08c"];
+  step2 [label="CorrelationId\nsafe single-line id", fillcolor="#dbe8d4", color="#5d8a62"];
+  step3 [label="Tracing Event\nstructured fields", fillcolor="#f7e5aa", color="#b99b5d"];
+  step4 [label="CapturedLogs\nassert event text", fillcolor="#eadcf5", color="#8a6bb0"];
+  step0 -> step1 [label="", color="#47616f", fontcolor="#47616f"];
+  step1 -> step2 [label="", color="#47616f", fontcolor="#47616f"];
+  step2 -> step3 [label="", color="#47616f", fontcolor="#47616f"];
+  step3 -> step4 [label="", color="#47616f", fontcolor="#47616f"];
 }
-

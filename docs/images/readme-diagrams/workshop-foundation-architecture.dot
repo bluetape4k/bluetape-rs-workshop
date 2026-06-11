@@ -1,25 +1,18 @@
-digraph "Milestone 0.1.0 architecture" {
-  graph [rankdir=LR, bgcolor="transparent", pad="0.4", nodesep="0.65", ranksep="0.9"];
-  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=12, margin="0.12,0.08", color="#2f3437", fillcolor="#f8fafc"];
-  edge [fontname="Arial", fontsize=10, color="#4b5563", arrowsize=0.8];
-
-  input [label="Partner Order Input", fillcolor="#e0f2fe"];
-  cleanup [label="foundation-order-cleanup\nvalidation + normalization", fillcolor="#dcfce7"];
-  tracing [label="request-tracing-log-capture\ncorrelation-aware logs", fillcolor="#fef3c7"];
-  scratch [label="temp-resource-test-harness\ntemporary files", fillcolor="#fae8ff"];
-
-  core [label="bluetape-rs-core", fillcolor="#eef2ff"];
-  logging [label="bluetape-rs-logging", fillcolor="#eef2ff"];
-  test [label="bluetape-rs-test", fillcolor="#eef2ff"];
-
-  input -> cleanup [label="rows"];
-  cleanup -> tracing [label="request context"];
-  tracing -> scratch [label="test artifact"];
-  core -> cleanup [label="validate", dir=back];
-  core -> tracing [label="validate", dir=back];
-  core -> scratch [label="validate", dir=back];
-  logging -> cleanup [label="capture", dir=back];
-  logging -> tracing [label="capture", dir=back];
-  test -> scratch [label="temp dir", dir=back];
+digraph "workshop-foundation-architecture" {
+  graph [rankdir=LR, bgcolor="#fbfaf6", margin=0.2, nodesep=0.75, ranksep=0.9];
+  node [shape=box, style="rounded,filled", fontname="Architects Daughter", fontsize=18, color="#48758d", fillcolor="#d7ecf2"];
+  edge [fontname="Comic Mono", fontsize=11, color="#47616f", fontcolor="#35505f", penwidth=2];
+  input [label="Partner Order Input\nraw rows + request context", fillcolor="#d7ecf2", color="#48758d"];
+  cleanup [label="foundation-order-cleanup\nvalidate + normalize", fillcolor="#dbe8d4", color="#5d8a62"];
+  tracing [label="request-tracing-log-capture\ncorrelation-aware logs", fillcolor="#f7e5aa", color="#b99b5d"];
+  scratch [label="temp-resource-test-harness\ntemporary files", fillcolor="#eadcf5", color="#8a6bb0"];
+  core [label="bluetape-rs-core\nvalidation helpers", fillcolor="#edf1e9", color="#91a08c"];
+  logging [label="bluetape-rs-logging\ncapture subscriber", fillcolor="#edf1e9", color="#91a08c"];
+  test [label="bluetape-rs-test\nTempDir harness", fillcolor="#edf1e9", color="#91a08c"];
+  input -> cleanup [label="", color="#47616f", fontcolor="#47616f"];
+  cleanup -> tracing [label="", color="#4f8b63", fontcolor="#4f8b63"];
+  tracing -> scratch [label="", color="#a78335", fontcolor="#a78335"];
+  core -> cleanup [label="", color="#47616f", fontcolor="#47616f"];
+  logging -> tracing [label="", color="#a78335", fontcolor="#a78335"];
+  test -> scratch [label="", color="#47616f", fontcolor="#47616f"];
 }
-
