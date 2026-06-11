@@ -248,11 +248,24 @@ def geometry_summary(d: Diagram) -> str:
     margin_delta = max(margins) - min(margins)
     segments = sum(max(1, len(r.points) - 1) for r in d.routes)
     title_gap = min_y - 104
+    vertical_stems = [
+        abs(r.points[-1][1] - r.points[0][1])
+        for r in d.routes
+        if len(r.points) == 2 and r.points[0][0] == r.points[-1][0]
+    ]
+    min_stem = min(vertical_stems) if vertical_stems else 0
+    short_connectors = sum(1 for stem in vertical_stems if stem < 28)
+    if short_connectors:
+        raise SystemExit(
+            f"{d.name}: short connector stem detected "
+            f"shortConnectors={short_connectors} minConnectorStem={min_stem}px"
+        )
     return (
         f"{d.name}: nodes={len(d.boxes)} routes={len(d.routes)} segments={segments} "
         f"badEndpointAngle=0 badBends=0 interiorCrossings=0 marginImbalance={margin_delta} "
         f"margins=L/R/T/B={margins[0]}/{margins[1]}/{margins[2]}/{margins[3]} "
-        f"titleGap={title_gap}px fontFallback=0 graphvizNodes={len(d.boxes)} "
+        f"titleGap={title_gap}px shortConnectors={short_connectors} minConnectorStem={min_stem}px "
+        f"fontFallback=0 graphvizNodes={len(d.boxes)} "
         f"graphvizRoutes={len(d.routes)} missingFinalNodes=0 missingGraphvizNodes=0 "
         f"rankOrderMismatches=0 routeSideMismatches=0 manualExceptions=0"
     )
