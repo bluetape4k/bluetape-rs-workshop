@@ -360,11 +360,11 @@ def flow_diagram(
     footer: str,
 ) -> Diagram:
     width = 980
-    height = 820
+    height = 980
     x = 340
     boxes: list[Box] = [Box("step0", first[0], first[1], x, 170, 300, 78, first[2])]
     for i, (t, d, tone) in enumerate(rest, start=1):
-        boxes.append(Box(f"step{i}", t, d, x, 170 + i * 82, 300, 74, tone))
+        boxes.append(Box(f"step{i}", t, d, x, 170 + i * 112, 300, 78, tone))
     routes = []
     for i in range(len(boxes) - 1):
         a = boxes[i]
