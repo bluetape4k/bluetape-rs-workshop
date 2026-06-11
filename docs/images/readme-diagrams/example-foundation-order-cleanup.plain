@@ -1,13 +1,13 @@
-graph 1 1.9171 6.5989
-node row 0.95854 6.321 1.8754 0.55583 "PartnerRow\nraw tenant/order/items" rounded,filled box #1f2937 #e0f2fe
-node validate 0.95854 5.1124 1.5837 0.55583 "require_not_blank\nrequired fields" rounded,filled box #1f2937 #eef2ff
-node normalize 0.95854 3.9038 1.4692 0.55583 "blank_to_default\noptional fields" rounded,filled box #1f2937 #dcfce7
-node skip 0.95854 2.6951 1.7608 0.55583 "skip invalid items\nblank sku or qty <= 0" rounded,filled box #1f2937 #fee2e2
-node report 0.95854 1.4865 1.9171 0.55583 "CleanupReport\norders + skipped count" rounded,filled box #1f2937 #fef3c7
-node logs 0.95854 0.27792 1.2921 0.55583 "CapturedLogs\ncorrelation.id" rounded,filled box #1f2937 #fae8ff
-edge row validate 4 0.95854 6.0391 0.95854 5.8866 0.95854 5.6928 0.95854 5.5229 solid #334155
-edge validate normalize 4 0.95854 4.8305 0.95854 4.678 0.95854 4.4842 0.95854 4.3143 solid #334155
-edge normalize skip 4 0.95854 3.6219 0.95854 3.4694 0.95854 3.2755 0.95854 3.1057 solid #334155
-edge skip report 4 0.95854 2.4133 0.95854 2.2608 0.95854 2.0669 0.95854 1.8971 solid #334155
-edge report logs 4 0.95854 1.2047 0.95854 1.0522 0.95854 0.85832 0.95854 0.68849 solid #334155
+graph 1 20.826 0.81944
+node step0 1.5069 0.40972 3.0139 0.81944 "PartnerRow\nraw tenant/order/items" rounded,filled box #48758d #d7ecf2
+node step1 5.0903 0.40972 2.3472 0.81944 "Required fields\nrequire_not_blank" rounded,filled box #91a08c #edf1e9
+node step2 8.2622 0.40972 2.191 0.81944 "Optional defaults\nblank_to_default" rounded,filled box #5d8a62 #dbe8d4
+node step3 11.929 0.40972 3.3368 0.81944 "Invalid items\nskip blank sku or qty <= 0" rounded,filled box #b95f7a #f5d3df
+node step4 15.991 0.40972 2.9826 0.81944 "CleanupReport\norders + skipped count" rounded,filled box #b99b5d #f7e5aa
+node step5 19.606 0.40972 2.441 0.81944 "CapturedLogs\ncorrelation.id event" rounded,filled box #8a6bb0 #eadcf5
+edge step0 step1 4 3.0184 0.40972 3.2558 0.40972 3.5001 0.40972 3.7337 0.40972 solid #47616f
+edge step1 step2 4 6.2704 0.40972 6.503 0.40972 6.7483 0.40972 6.984 0.40972 solid #47616f
+edge step2 step3 4 9.3629 0.40972 9.5887 0.40972 9.8326 0.40972 10.077 0.40972 solid #47616f
+edge step3 step4 4 13.601 0.40972 13.837 0.40972 14.079 0.40972 14.315 0.40972 solid #47616f
+edge step4 step5 4 17.485 0.40972 17.723 0.40972 17.969 0.40972 18.205 0.40972 solid #47616f
 stop

@@ -1,13 +1,12 @@
-graph 1 2.3754 6.0011
-node raw 1.1877 5.7511 1.9067 0.5 "1. Receive partner row" rounded,filled box #2f3437 #e0f2fe
-node validate 1.1877 4.6676 2.1046 0.55583 "2. Validate required fields\nbluetape-rs-core" rounded,filled box #2f3437 #eef2ff
-node normalize 1.1877 3.5562 2.24 0.55583 "3. Normalize order payload\nfoundation-order-cleanup" rounded,filled box #2f3437 #dcfce7
-node log 1.1877 2.4449 1.7087 0.55583 "4. Emit captured log\nbluetape-rs-logging" rounded,filled box #2f3437 #fef3c7
-node scratch 1.1877 1.3335 1.9587 0.55583 "5. Write isolated artifact\nbluetape-rs-test" rounded,filled box #2f3437 #fae8ff
-node assert 1.1877 0.25 2.3754 0.5 "6. Assert output, log, cleanup" rounded,filled box #2f3437 #f1f5f9
-edge raw validate 4 1.1877 5.4977 1.1877 5.3741 1.1877 5.2202 1.1877 5.0794 solid #4b5563
-edge validate normalize 4 1.1877 4.3859 1.1877 4.2596 1.1877 4.1063 1.1877 3.9668 solid #4b5563
-edge normalize log 4 1.1877 3.2745 1.1877 3.1482 1.1877 2.9949 1.1877 2.8554 solid #4b5563
-edge log scratch 4 1.1877 2.1631 1.1877 2.0368 1.1877 1.8835 1.1877 1.744 solid #4b5563
-edge scratch assert 4 1.1877 1.0532 1.1877 0.92675 1.1877 0.77353 1.1877 0.63586 solid #4b5563
+graph 1 6.5174 4.8889
+node learner 0.71528 2.4792 1.4306 0.81944 "Learner\nruns tests" rounded,filled box #48758d #d7ecf2
+node cleanup 5.474 4.4792 2.0868 0.81944 "Cleanup Example\nnormalize rows" rounded,filled box #5d8a62 #dbe8d4
+node logging 5.474 2.1875 2.0868 0.81944 "Logging Example\ncapture event" rounded,filled box #b99b5d #f7e5aa
+node scratch 5.474 0.40972 2.0868 0.81944 "Temp Resource\nwrite artifact" rounded,filled box #8a6bb0 #eadcf5
+edge learner cleanup 7 0.88825 2.8941 1.0663 3.2962 1.3962 3.8863 1.8889 4.1736 2.5953 4.5856 3.5175 4.6551 4.2478 4.6252 "1. normalize partner rows" 2.9306 4.7198 solid #47616f
+edge learner logging 4 1.4374 2.4355 2.179 2.3898 3.3572 2.3171 4.2472 2.2623 "2. assert correlation log" 2.9306 2.4895 solid #a78335
+edge learner scratch 7 1.1267 2.0638 1.3372 1.8641 1.6095 1.6356 1.8889 1.4826 2.6273 1.0784 3.5369 0.80805 4.2533 0.63981 "3. write scratch rows" 2.9306 1.5712 solid #47616f
+edge cleanup learner 4 4.475 4.0627 3.6264 3.704 2.4131 3.1911 1.5996 2.8472 "validated order" 2.9306 3.9208 solid #4f8b63
+edge logging learner 7 4.4249 1.9621 3.7057 1.8428 2.7294 1.7554 1.8889 1.941 1.7941 1.9619 1.6978 1.9914 1.6033 2.0259 "captured text" 2.9306 2.0295 solid #4f8b63
+edge scratch learner 7 4.4248 0.12231 3.6693 -0.025861 2.6489 -0.093054 1.8889 0.35764 1.3334 0.68706 1.0267 1.3868 0.8704 1.8928 "cleanup verified" 2.9306 0.44618 solid #4f8b63
 stop

@@ -1,52 +1,70 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
-  <title id="title">Milestone 0.1.0 Sequence</title>
-  <desc id="desc">Sequence diagram for the bluetape-rs workshop foundation walkthrough.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="820" viewBox="0 0 1480 820" role="img" aria-labelledby="title desc">
+  <title id="title">Milestone 0.1.0 Foundation Sequence</title>
+  <desc id="desc">The learner moves from raw input through validation, log capture, temp resources, and assertions.</desc>
   <defs>
-    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L0,6 L9,3 z" fill="#334155"/>
-    </marker>
+    <marker id="arrow-main" viewBox="0 0 8 8" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M 1 1 L 7 4 L 1 7 Z" fill="#47616f"/></marker>
+    <marker id="arrow-success" viewBox="0 0 8 8" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M 1 1 L 7 4 L 1 7 Z" fill="#4f8b63"/></marker>
+    <marker id="arrow-error" viewBox="0 0 8 8" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M 1 1 L 7 4 L 1 7 Z" fill="#b95f7a"/></marker>
+    <marker id="arrow-amber" viewBox="0 0 8 8" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M 1 1 L 7 4 L 1 7 Z" fill="#a78335"/></marker>
     <style>
-      text { font-family: Arial, sans-serif; fill: #111827; }
-      .title { font-size: 34px; font-weight: 700; }
-      .subtitle { font-size: 18px; fill: #475569; }
-      .box { stroke: #1f2937; stroke-width: 2; rx: 12; }
-      .label { font-size: 19px; font-weight: 700; }
-      .small { font-size: 15px; fill: #334155; }
-      .edge { stroke: #334155; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      @font-face { font-family: 'Architects Daughter'; src: url('file:///Users/debop/Library/Fonts/ArchitectsDaughter-Regular.ttf') format('truetype'); }
+      @font-face { font-family: 'Comic Mono'; src: url('file:///Users/debop/Library/Fonts/ComicMono.ttf') format('truetype'); }
+      .title { font-family: 'Architects Daughter'; font-size: 38px; fill: #243845; }
+      .subtitle, .detail, .route-label, .footer { font-family: 'Comic Mono'; fill: #536d7d; }
+      .subtitle { font-size: 15px; }
+      .card-title, .band-label { font-family: 'Architects Daughter'; fill: #243845; }
+      .card-title { font-size: 22px; }
+      .band-label { font-size: 21px; }
+      .detail { font-size: 14px; }
+      .route-label { font-size: 13px; }
+      .footer { font-size: 14px; }
+      .band { fill: #ffffff; stroke: #d8e2e8; stroke-width: 2; rx: 16; }
+      .line-main { fill: none; stroke: #47616f; stroke-width: 3; marker-end: url(#arrow-main); }
+      .line-success { fill: none; stroke: #4f8b63; stroke-width: 3; marker-end: url(#arrow-success); }
+      .line-error { fill: none; stroke: #b95f7a; stroke-width: 3; marker-end: url(#arrow-error); }
+      .line-amber { fill: none; stroke: #a78335; stroke-width: 3; marker-end: url(#arrow-amber); }
     </style>
   </defs>
-  <rect width="1280" height="720" fill="#ffffff"/>
-  <text x="64" y="70" class="title">Milestone 0.1.0 Sequence</text>
-  <text x="64" y="104" class="subtitle">From raw partner input to validated output, captured logs, and isolated test files</text>
+  <rect width="1480" height="820" fill="#fbfaf6"/>
+  <text class="title" x="740" y="58" text-anchor="middle">Milestone 0.1.0 Foundation Sequence</text>
+  <text class="subtitle" x="740" y="92" text-anchor="middle">The learner moves from raw input through validation, log capture, temp resources, and assertions.</text>
 
-  <rect x="94" y="164" width="250" height="82" class="box" fill="#e0f2fe"/>
-  <text x="122" y="200" class="label">1. Receive partner row</text>
-  <text x="122" y="226" class="small">raw order payload</text>
-
-  <rect x="402" y="164" width="250" height="82" class="box" fill="#eef2ff"/>
-  <text x="430" y="200" class="label">2. Validate fields</text>
-  <text x="430" y="226" class="small">bluetape-rs-core</text>
-
-  <rect x="710" y="164" width="300" height="82" class="box" fill="#dcfce7"/>
-  <text x="738" y="200" class="label">3. Normalize order</text>
-  <text x="738" y="226" class="small">foundation-order-cleanup</text>
-
-  <rect x="710" y="338" width="300" height="82" class="box" fill="#fef3c7"/>
-  <text x="738" y="374" class="label">4. Emit captured log</text>
-  <text x="738" y="400" class="small">bluetape-rs-logging</text>
-
-  <rect x="402" y="338" width="250" height="82" class="box" fill="#fae8ff"/>
-  <text x="430" y="374" class="label">5. Write artifact</text>
-  <text x="430" y="400" class="small">bluetape-rs-test</text>
-
-  <rect x="94" y="338" width="250" height="82" class="box" fill="#f1f5f9"/>
-  <text x="122" y="374" class="label">6. Assert result</text>
-  <text x="122" y="400" class="small">output, log, cleanup</text>
-
-  <path d="M344 205 L402 205" class="edge"/>
-  <path d="M652 205 L710 205" class="edge"/>
-  <path d="M860 246 L860 338" class="edge"/>
-  <path d="M710 379 L652 379" class="edge"/>
-  <path d="M402 379 L344 379" class="edge"/>
-  <path d="M219 338 C219 302, 219 282, 219 246" class="edge"/>
+  <g id="learner">
+    <rect x="104" y="150" width="190" height="64" rx="12" fill="#d7ecf2" stroke="#48758d" stroke-width="2"/>
+    <text class="card-title" x="199" y="172" text-anchor="middle">Learner</text>
+    <text class="detail" x="199" y="202" text-anchor="middle">runs tests</text>
+  </g>
+  <line x1="199" y1="214" x2="199" y2="678" stroke="#9bb0bd" stroke-width="2" stroke-dasharray="6 8"/>
+  <g id="cleanup">
+    <rect x="414" y="150" width="236" height="64" rx="12" fill="#dbe8d4" stroke="#5d8a62" stroke-width="2"/>
+    <text class="card-title" x="532" y="172" text-anchor="middle">Cleanup Example</text>
+    <text class="detail" x="532" y="202" text-anchor="middle">normalize rows</text>
+  </g>
+  <line x1="532" y1="214" x2="532" y2="678" stroke="#9bb0bd" stroke-width="2" stroke-dasharray="6 8"/>
+  <g id="logging">
+    <rect x="814" y="150" width="236" height="64" rx="12" fill="#f7e5aa" stroke="#b99b5d" stroke-width="2"/>
+    <text class="card-title" x="932" y="172" text-anchor="middle">Logging Example</text>
+    <text class="detail" x="932" y="202" text-anchor="middle">capture event</text>
+  </g>
+  <line x1="932" y1="214" x2="932" y2="678" stroke="#9bb0bd" stroke-width="2" stroke-dasharray="6 8"/>
+  <g id="scratch">
+    <rect x="1190" y="150" width="196" height="64" rx="12" fill="#eadcf5" stroke="#8a6bb0" stroke-width="2"/>
+    <text class="card-title" x="1288" y="172" text-anchor="middle">Temp Resource</text>
+    <text class="detail" x="1288" y="202" text-anchor="middle">write artifact</text>
+  </g>
+  <line x1="1288" y1="214" x2="1288" y2="678" stroke="#9bb0bd" stroke-width="2" stroke-dasharray="6 8"/>
+  <path class="line-main" d="M 199 270 L 532 270"/>
+  <text class="route-label" x="365" y="260" text-anchor="middle">1. normalize partner rows</text>
+  <path class="line-success" d="M 532 328 L 199 328"/>
+  <text class="route-label" x="365" y="318" text-anchor="middle">validated order</text>
+  <path class="line-amber" d="M 199 418 L 932 418"/>
+  <text class="route-label" x="565" y="408" text-anchor="middle">2. assert correlation log</text>
+  <path class="line-success" d="M 932 476 L 199 476"/>
+  <text class="route-label" x="565" y="466" text-anchor="middle">captured text</text>
+  <path class="line-main" d="M 199 566 L 1288 566"/>
+  <text class="route-label" x="743" y="556" text-anchor="middle">3. write scratch rows</text>
+  <path class="line-success" d="M 1288 624 L 199 624"/>
+  <text class="route-label" x="743" y="614" text-anchor="middle">cleanup verified</text>
+  <rect x="250" y="746" width="980" height="42" rx="11" fill="#edf1e9" stroke="#5d8a62"/>
+  <text class="footer" x="740" y="772" text-anchor="middle">The sequence is intentionally linear; integration and branching begin in later milestones.</text>
 </svg>

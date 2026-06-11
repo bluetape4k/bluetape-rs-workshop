@@ -1,60 +1,81 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
-  <title id="title">Milestone 0.1.0 Architecture</title>
-  <desc id="desc">Architecture diagram for bluetape-rs workshop foundation examples.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="760" viewBox="0 0 1480 760" role="img" aria-labelledby="title desc">
+  <title id="title">bluetape-rs-workshop Foundation Architecture</title>
+  <desc id="desc">Milestone 0.1.0 keeps focused examples independent while sharing validation, logging, and test-helper contracts.</desc>
   <defs>
-    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L0,6 L9,3 z" fill="#334155"/>
-    </marker>
+    <marker id="arrow-main" viewBox="0 0 8 8" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M 1 1 L 7 4 L 1 7 Z" fill="#47616f"/></marker>
+    <marker id="arrow-success" viewBox="0 0 8 8" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M 1 1 L 7 4 L 1 7 Z" fill="#4f8b63"/></marker>
+    <marker id="arrow-error" viewBox="0 0 8 8" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M 1 1 L 7 4 L 1 7 Z" fill="#b95f7a"/></marker>
+    <marker id="arrow-amber" viewBox="0 0 8 8" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M 1 1 L 7 4 L 1 7 Z" fill="#a78335"/></marker>
     <style>
-      text { font-family: Arial, sans-serif; fill: #111827; }
-      .title { font-size: 34px; font-weight: 700; }
-      .subtitle { font-size: 18px; fill: #475569; }
-      .box { stroke: #1f2937; stroke-width: 2; rx: 12; }
-      .label { font-size: 19px; font-weight: 700; }
-      .small { font-size: 15px; fill: #334155; }
-      .edge { stroke: #334155; stroke-width: 3; fill: none; marker-end: url(#arrow); }
-      .edge-label { font-size: 14px; fill: #475569; }
+      @font-face { font-family: 'Architects Daughter'; src: url('file:///Users/debop/Library/Fonts/ArchitectsDaughter-Regular.ttf') format('truetype'); }
+      @font-face { font-family: 'Comic Mono'; src: url('file:///Users/debop/Library/Fonts/ComicMono.ttf') format('truetype'); }
+      .title { font-family: 'Architects Daughter'; font-size: 38px; fill: #243845; }
+      .subtitle, .detail, .route-label, .footer { font-family: 'Comic Mono'; fill: #536d7d; }
+      .subtitle { font-size: 15px; }
+      .card-title, .band-label { font-family: 'Architects Daughter'; fill: #243845; }
+      .card-title { font-size: 22px; }
+      .band-label { font-size: 21px; }
+      .detail { font-size: 14px; }
+      .route-label { font-size: 13px; }
+      .footer { font-size: 14px; }
+      .band { fill: #ffffff; stroke: #d8e2e8; stroke-width: 2; rx: 16; }
+      .line-main { fill: none; stroke: #47616f; stroke-width: 3; marker-end: url(#arrow-main); }
+      .line-success { fill: none; stroke: #4f8b63; stroke-width: 3; marker-end: url(#arrow-success); }
+      .line-error { fill: none; stroke: #b95f7a; stroke-width: 3; marker-end: url(#arrow-error); }
+      .line-amber { fill: none; stroke: #a78335; stroke-width: 3; marker-end: url(#arrow-amber); }
     </style>
   </defs>
-  <rect width="1280" height="720" fill="#ffffff"/>
-  <text x="64" y="70" class="title">Milestone 0.1.0 Architecture</text>
-  <text x="64" y="104" class="subtitle">Independent foundation examples that share one partner-order scenario</text>
+  <rect width="1480" height="760" fill="#fbfaf6"/>
+  <text class="title" x="740" y="58" text-anchor="middle">bluetape-rs-workshop Foundation Architecture</text>
+  <text class="subtitle" x="740" y="92" text-anchor="middle">Milestone 0.1.0 keeps focused examples independent while sharing validation, logging, and test-helper contracts.</text>
 
-  <rect x="64" y="206" width="210" height="120" class="box" fill="#e0f2fe"/>
-  <text x="92" y="256" class="label">Partner Order</text>
-  <text x="92" y="284" class="small">raw input rows</text>
-
-  <rect x="370" y="166" width="265" height="120" class="box" fill="#dcfce7"/>
-  <text x="397" y="212" class="label">foundation-order-cleanup</text>
-  <text x="397" y="240" class="small">validation + normalization</text>
-
-  <rect x="370" y="356" width="265" height="120" class="box" fill="#fef3c7"/>
-  <text x="397" y="402" class="label">request-tracing-log-capture</text>
-  <text x="397" y="430" class="small">correlation-aware logs</text>
-
-  <rect x="742" y="256" width="270" height="120" class="box" fill="#fae8ff"/>
-  <text x="771" y="302" class="label">temp-resource-test-harness</text>
-  <text x="771" y="330" class="small">isolated temporary files</text>
-
-  <rect x="930" y="82" width="250" height="72" class="box" fill="#eef2ff"/>
-  <text x="966" y="126" class="label">bluetape-rs-core</text>
-
-  <rect x="930" y="438" width="250" height="72" class="box" fill="#eef2ff"/>
-  <text x="950" y="482" class="label">bluetape-rs-logging</text>
-
-  <rect x="930" y="560" width="250" height="72" class="box" fill="#eef2ff"/>
-  <text x="974" y="604" class="label">bluetape-rs-test</text>
-
-  <path d="M274 266 C310 266, 330 226, 370 226" class="edge"/>
-  <text x="300" y="246" class="edge-label">rows</text>
-  <path d="M635 226 C690 226, 694 316, 742 316" class="edge"/>
-  <text x="655" y="270" class="edge-label">normalized order</text>
-  <path d="M635 416 C690 416, 694 316, 742 316" class="edge"/>
-  <text x="655" y="388" class="edge-label">captured context</text>
-  <path d="M930 118 C776 118, 710 166, 635 206" class="edge"/>
-  <text x="758" y="141" class="edge-label">validate</text>
-  <path d="M930 474 C790 526, 706 456, 635 426" class="edge"/>
-  <text x="760" y="500" class="edge-label">capture</text>
-  <path d="M980 560 C886 520, 866 438, 884 376" class="edge"/>
-  <text x="902" y="522" class="edge-label">temp dir</text>
+  <rect class="band" x="56" y="140" width="1368" height="132"/>
+  <text class="band-label" x="92" y="178">Workshop Scenario</text>
+  <rect class="band" x="56" y="318" width="1368" height="180"/>
+  <text class="band-label" x="92" y="356">Milestone 0.1.0 Examples</text>
+  <rect class="band" x="56" y="548" width="1368" height="132"/>
+  <text class="band-label" x="92" y="586">bluetape-rs Libraries</text>
+  <g id="input">
+    <rect x="96" y="196" width="258" height="76" rx="12" fill="#d7ecf2" stroke="#48758d" stroke-width="2"/>
+    <text class="card-title" x="225" y="224" text-anchor="middle">Partner Order Input</text>
+    <text class="detail" x="225" y="254" text-anchor="middle">raw rows + request context</text>
+  </g>
+  <g id="cleanup">
+    <rect x="270" y="380" width="282" height="88" rx="12" fill="#dbe8d4" stroke="#5d8a62" stroke-width="2"/>
+    <text class="card-title" x="411" y="414" text-anchor="middle">foundation-order-cleanup</text>
+    <text class="detail" x="411" y="444" text-anchor="middle">validate + normalize</text>
+  </g>
+  <g id="tracing">
+    <rect x="604" y="380" width="308" height="88" rx="12" fill="#f7e5aa" stroke="#b99b5d" stroke-width="2"/>
+    <text class="card-title" x="758" y="414" text-anchor="middle">request-tracing-log-capture</text>
+    <text class="detail" x="758" y="444" text-anchor="middle">correlation-aware logs</text>
+  </g>
+  <g id="scratch">
+    <rect x="964" y="380" width="300" height="88" rx="12" fill="#eadcf5" stroke="#8a6bb0" stroke-width="2"/>
+    <text class="card-title" x="1114" y="414" text-anchor="middle">temp-resource-test-harness</text>
+    <text class="detail" x="1114" y="444" text-anchor="middle">temporary files</text>
+  </g>
+  <g id="core">
+    <rect x="270" y="592" width="282" height="70" rx="12" fill="#edf1e9" stroke="#91a08c" stroke-width="2"/>
+    <text class="card-title" x="411" y="617" text-anchor="middle">bluetape-rs-core</text>
+    <text class="detail" x="411" y="647" text-anchor="middle">validation helpers</text>
+  </g>
+  <g id="logging">
+    <rect x="604" y="592" width="308" height="70" rx="12" fill="#edf1e9" stroke="#91a08c" stroke-width="2"/>
+    <text class="card-title" x="758" y="617" text-anchor="middle">bluetape-rs-logging</text>
+    <text class="detail" x="758" y="647" text-anchor="middle">capture subscriber</text>
+  </g>
+  <g id="test">
+    <rect x="964" y="592" width="300" height="70" rx="12" fill="#edf1e9" stroke="#91a08c" stroke-width="2"/>
+    <text class="card-title" x="1114" y="617" text-anchor="middle">bluetape-rs-test</text>
+    <text class="detail" x="1114" y="647" text-anchor="middle">TempDir harness</text>
+  </g>
+  <path class="line-main" d="M 225 272 L 225 424 L 270 424"/>
+  <path class="line-success" d="M 552 424 L 604 424"/>
+  <path class="line-amber" d="M 912 424 L 964 424"/>
+  <path class="line-main" d="M 411 592 L 411 468"/>
+  <path class="line-amber" d="M 758 592 L 758 468"/>
+  <path class="line-main" d="M 1114 592 L 1114 468"/>
+  <rect x="270" y="690" width="940" height="38" rx="11" fill="#edf1e9" stroke="#5d8a62"/>
+  <text class="footer" x="740" y="715" text-anchor="middle">Later milestones compose these foundation slices into larger service-style walkthroughs.</text>
 </svg>

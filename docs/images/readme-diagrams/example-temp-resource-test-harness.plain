@@ -1,11 +1,11 @@
-graph 1 1.6671 5.3903
-node config 0.83354 5.1124 1.5525 0.55583 "ScratchConfig\nprefix + file_name" rounded,filled box #1f2937 #e0f2fe
-node validate 0.83354 3.9038 1.5942 0.55583 "validate fields\nreject path escape" rounded,filled box #1f2937 #eef2ff
-node temp 0.83354 2.6951 1.6671 0.55583 "TempDir::new\nisolated workspace" rounded,filled box #1f2937 #dcfce7
-node file 0.83354 1.4865 1.3025 0.55583 "fs::write\nscratch artifact" rounded,filled box #1f2937 #fef3c7
-node cleanup 0.83354 0.27792 1.4275 0.55583 "close()\nremove temp dir" rounded,filled box #1f2937 #fae8ff
-edge config validate 4 0.83354 4.8305 0.83354 4.678 0.83354 4.4842 0.83354 4.3143 solid #334155
-edge validate temp 4 0.83354 3.6219 0.83354 3.4694 0.83354 3.2755 0.83354 3.1057 solid #334155
-edge temp file 4 0.83354 2.4133 0.83354 2.2608 0.83354 2.0669 0.83354 1.8971 solid #334155
-edge file cleanup 4 0.83354 1.2047 0.83354 1.0522 0.83354 0.85832 0.83354 0.68849 solid #334155
+graph 1 16.285 0.81944
+node step0 1.1944 0.40972 2.3889 0.81944 "ScratchConfig\nprefix + file_name" rounded,filled box #48758d #d7ecf2
+node step1 5.2622 0.40972 3.941 0.81944 "Path Safety\nreject absolute or parent paths" rounded,filled box #91a08c #edf1e9
+node step2 9.3767 0.40972 2.4826 0.81944 "TempDir\nisolated workspace" rounded,filled box #5d8a62 #dbe8d4
+node step3 12.361 0.40972 1.6806 0.81944 "Scratch File\nwrite rows" rounded,filled box #b99b5d #f7e5aa
+node step4 15.194 0.40972 2.1806 0.81944 "Close\nremove temp dir" rounded,filled box #8a6bb0 #eadcf5
+edge step0 step1 4 2.3931 0.40972 2.6189 0.40972 2.8616 0.40972 3.1066 0.40972 solid #47616f
+edge step1 step2 4 7.2357 0.40972 7.4789 0.40972 7.7237 0.40972 7.9563 0.40972 solid #47616f
+edge step2 step3 4 10.623 0.40972 10.861 0.40972 11.107 0.40972 11.336 0.40972 solid #47616f
+edge step3 step4 4 13.205 0.40972 13.431 0.40972 13.679 0.40972 13.922 0.40972 solid #47616f
 stop

@@ -1,11 +1,11 @@
-graph 1 2.1879 5.3903
-node request 1.094 5.1124 2.1879 0.55583 "Request input\ncorrelation + route + status" rounded,filled box #1f2937 #e0f2fe
-node validate 1.094 3.9038 1.7192 0.55583 "validate route/status\nbluetape-rs-core" rounded,filled box #1f2937 #eef2ff
-node id 1.094 2.6951 1.5942 0.55583 "CorrelationId::new\nsafe single-line id" rounded,filled box #1f2937 #dcfce7
-node event 1.094 1.4865 1.5004 0.55583 "tracing info event\nstructured fields" rounded,filled box #1f2937 #fef3c7
-node capture 1.094 0.27792 1.4379 0.55583 "CapturedLogs\nassert event text" rounded,filled box #1f2937 #fae8ff
-edge request validate 4 1.094 4.8305 1.094 4.678 1.094 4.4842 1.094 4.3143 solid #334155
-edge validate id 4 1.094 3.6219 1.094 3.4694 1.094 3.2755 1.094 3.1057 solid #334155
-edge id event 4 1.094 2.4133 1.094 2.2608 1.094 2.0669 1.094 1.8971 solid #334155
-edge event capture 4 1.094 1.2047 1.094 1.0522 1.094 0.85832 1.094 0.68849 solid #334155
+graph 1 16.597 0.81944
+node step0 1.7778 0.40972 3.5556 0.81944 "Request Input\ncorrelation + route + status" rounded,filled box #48758d #d7ecf2
+node step1 5.8663 0.40972 2.816 0.81944 "Route + Status\nvalidate before logging" rounded,filled box #91a08c #edf1e9
+node step2 9.2465 0.40972 2.1389 0.81944 "CorrelationId\nsafe single-line id" rounded,filled box #5d8a62 #dbe8d4
+node step3 12.325 0.40972 2.2118 0.81944 "Tracing Event\nstructured fields" rounded,filled box #b99b5d #f7e5aa
+node step4 15.465 0.40972 2.2639 0.81944 "CapturedLogs\nassert event text" rounded,filled box #8a6bb0 #eadcf5
+edge step0 step1 4 3.561 0.40972 3.7994 0.40972 4.0427 0.40972 4.2775 0.40972 solid #47616f
+edge step1 step2 4 7.2777 0.40972 7.5168 0.40972 7.7636 0.40972 7.9981 0.40972 solid #47616f
+edge step2 step3 4 10.319 0.40972 10.549 0.40972 10.795 0.40972 11.033 0.40972 solid #47616f
+edge step3 step4 4 13.436 0.40972 13.666 0.40972 13.911 0.40972 14.148 0.40972 solid #47616f
 stop
