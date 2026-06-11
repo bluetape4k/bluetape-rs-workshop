@@ -1,0 +1,16 @@
+digraph "temp-resource-test-harness flow" {
+  graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.55", ranksep="0.65"];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=12, margin="0.12,0.08", color="#1f2937", fillcolor="#f8fafc"];
+  edge [fontname="Arial", fontsize=10, color="#334155", arrowsize=0.8];
+
+  config [label="ScratchConfig\nprefix + file_name", fillcolor="#e0f2fe"];
+  validate [label="validate fields\nreject path escape", fillcolor="#eef2ff"];
+  temp [label="TempDir::new\nisolated workspace", fillcolor="#dcfce7"];
+  file [label="fs::write\nscratch artifact", fillcolor="#fef3c7"];
+  cleanup [label="close()\nremove temp dir", fillcolor="#fae8ff"];
+
+  config -> validate;
+  validate -> temp;
+  temp -> file;
+  file -> cleanup;
+}

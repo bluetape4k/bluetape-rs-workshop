@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Milestone 0.1.0 Architecture</title>
+  <desc id="desc">Architecture diagram for bluetape-rs workshop foundation examples.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#334155"/>
+    </marker>
+    <style>
+      text { font-family: Arial, sans-serif; fill: #111827; }
+      .title { font-size: 34px; font-weight: 700; }
+      .subtitle { font-size: 18px; fill: #475569; }
+      .box { stroke: #1f2937; stroke-width: 2; rx: 12; }
+      .label { font-size: 19px; font-weight: 700; }
+      .small { font-size: 15px; fill: #334155; }
+      .edge { stroke: #334155; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .edge-label { font-size: 14px; fill: #475569; }
+    </style>
+  </defs>
+  <rect width="1280" height="720" fill="#ffffff"/>
+  <text x="64" y="70" class="title">Milestone 0.1.0 Architecture</text>
+  <text x="64" y="104" class="subtitle">Independent foundation examples that share one partner-order scenario</text>
+
+  <rect x="64" y="206" width="210" height="120" class="box" fill="#e0f2fe"/>
+  <text x="92" y="256" class="label">Partner Order</text>
+  <text x="92" y="284" class="small">raw input rows</text>
+
+  <rect x="370" y="166" width="265" height="120" class="box" fill="#dcfce7"/>
+  <text x="397" y="212" class="label">foundation-order-cleanup</text>
+  <text x="397" y="240" class="small">validation + normalization</text>
+
+  <rect x="370" y="356" width="265" height="120" class="box" fill="#fef3c7"/>
+  <text x="397" y="402" class="label">request-tracing-log-capture</text>
+  <text x="397" y="430" class="small">correlation-aware logs</text>
+
+  <rect x="742" y="256" width="270" height="120" class="box" fill="#fae8ff"/>
+  <text x="771" y="302" class="label">temp-resource-test-harness</text>
+  <text x="771" y="330" class="small">isolated temporary files</text>
+
+  <rect x="930" y="82" width="250" height="72" class="box" fill="#eef2ff"/>
+  <text x="966" y="126" class="label">bluetape-rs-core</text>
+
+  <rect x="930" y="438" width="250" height="72" class="box" fill="#eef2ff"/>
+  <text x="950" y="482" class="label">bluetape-rs-logging</text>
+
+  <rect x="930" y="560" width="250" height="72" class="box" fill="#eef2ff"/>
+  <text x="974" y="604" class="label">bluetape-rs-test</text>
+
+  <path d="M274 266 C310 266, 330 226, 370 226" class="edge"/>
+  <text x="300" y="246" class="edge-label">rows</text>
+  <path d="M635 226 C690 226, 694 316, 742 316" class="edge"/>
+  <text x="655" y="270" class="edge-label">normalized order</text>
+  <path d="M635 416 C690 416, 694 316, 742 316" class="edge"/>
+  <text x="655" y="388" class="edge-label">captured context</text>
+  <path d="M930 118 C776 118, 710 166, 635 206" class="edge"/>
+  <text x="758" y="141" class="edge-label">validate</text>
+  <path d="M930 474 C790 526, 706 456, 635 426" class="edge"/>
+  <text x="760" y="500" class="edge-label">capture</text>
+  <path d="M980 560 C886 520, 866 438, 884 376" class="edge"/>
+  <text x="902" y="522" class="edge-label">temp dir</text>
+</svg>

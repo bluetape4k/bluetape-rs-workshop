@@ -1,0 +1,11 @@
+graph 1 1.6671 5.3903
+node config 0.83354 5.1124 1.5525 0.55583 "ScratchConfig\nprefix + file_name" rounded,filled box #1f2937 #e0f2fe
+node validate 0.83354 3.9038 1.5942 0.55583 "validate fields\nreject path escape" rounded,filled box #1f2937 #eef2ff
+node temp 0.83354 2.6951 1.6671 0.55583 "TempDir::new\nisolated workspace" rounded,filled box #1f2937 #dcfce7
+node file 0.83354 1.4865 1.3025 0.55583 "fs::write\nscratch artifact" rounded,filled box #1f2937 #fef3c7
+node cleanup 0.83354 0.27792 1.4275 0.55583 "close()\nremove temp dir" rounded,filled box #1f2937 #fae8ff
+edge config validate 4 0.83354 4.8305 0.83354 4.678 0.83354 4.4842 0.83354 4.3143 solid #334155
+edge validate temp 4 0.83354 3.6219 0.83354 3.4694 0.83354 3.2755 0.83354 3.1057 solid #334155
+edge temp file 4 0.83354 2.4133 0.83354 2.2608 0.83354 2.0669 0.83354 1.8971 solid #334155
+edge file cleanup 4 0.83354 1.2047 0.83354 1.0522 0.83354 0.85832 0.83354 0.68849 solid #334155
+stop

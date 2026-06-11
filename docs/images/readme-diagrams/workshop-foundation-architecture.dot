@@ -1,0 +1,25 @@
+digraph "Milestone 0.1.0 architecture" {
+  graph [rankdir=LR, bgcolor="transparent", pad="0.4", nodesep="0.65", ranksep="0.9"];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=12, margin="0.12,0.08", color="#2f3437", fillcolor="#f8fafc"];
+  edge [fontname="Arial", fontsize=10, color="#4b5563", arrowsize=0.8];
+
+  input [label="Partner Order Input", fillcolor="#e0f2fe"];
+  cleanup [label="foundation-order-cleanup\nvalidation + normalization", fillcolor="#dcfce7"];
+  tracing [label="request-tracing-log-capture\ncorrelation-aware logs", fillcolor="#fef3c7"];
+  scratch [label="temp-resource-test-harness\ntemporary files", fillcolor="#fae8ff"];
+
+  core [label="bluetape-rs-core", fillcolor="#eef2ff"];
+  logging [label="bluetape-rs-logging", fillcolor="#eef2ff"];
+  test [label="bluetape-rs-test", fillcolor="#eef2ff"];
+
+  input -> cleanup [label="rows"];
+  cleanup -> tracing [label="request context"];
+  tracing -> scratch [label="test artifact"];
+  core -> cleanup [label="validate", dir=back];
+  core -> tracing [label="validate", dir=back];
+  core -> scratch [label="validate", dir=back];
+  logging -> cleanup [label="capture", dir=back];
+  logging -> tracing [label="capture", dir=back];
+  test -> scratch [label="temp dir", dir=back];
+}
+
