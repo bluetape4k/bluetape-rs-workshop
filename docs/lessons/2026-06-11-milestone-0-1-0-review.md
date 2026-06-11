@@ -44,6 +44,17 @@ rg 'docs/images/readme-diagrams/.*\.svg' README.md README.ko.md examples/*/READM
 
 Result: generator completed, SVG parsing passed, forbidden UI fonts absent, and README files embed PNG only.
 
+## Follow-up Defect
+
+The first generated example flow diagrams kept cards too close together, which
+made connector stems hard to see at README scale. The fix was not only to
+increase canvas height and card spacing, but also to promote the defect into
+`scripts/generate-foundation-diagrams.py`:
+
+- vertical example-flow card spacing uses a larger step
+- `geometry-summary.txt` records `shortConnectors` and `minConnectorStem`
+- the generator fails when a direct vertical connector stem is shorter than 28px
+
 ## Risk
 
 - P0: 0
