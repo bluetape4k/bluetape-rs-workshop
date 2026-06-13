@@ -38,6 +38,17 @@ shutdown-aware worker behavior.
 
 ![Milestone 0.2.0 sequence](docs/images/readme-diagrams/workshop-collections-async-sequence.png)
 
+## Milestone 0.3.0: Codec Examples
+
+Milestone 0.3.0 adds codec examples that sit on workflow boundaries instead of
+showing standalone encode/decode snippets. The lane starts with invitation
+artifacts that validate request fields, emit URL-safe callback state, and keep
+support-facing references separate from recipient identifiers.
+
+| Example | Focus | Run |
+|---|---|---|
+| [`invitation-codecs`](examples/invitation-codecs/README.md) | Build URL-safe invitation tokens, callback state, and Base58 support references with malformed-input errors | `cargo test -p invitation-codecs` |
+
 ## Learning Path
 
 1. Start with `foundation-order-cleanup` to learn how validation helpers turn
@@ -52,6 +63,8 @@ shutdown-aware worker behavior.
    explicit required-vs-optional failure handling.
 6. Finish the 0.2.0 lane with `shutdown-aware-worker` to see timeout and
    shutdown cancellation states.
+7. Start the 0.3.0 lane with `invitation-codecs` to place strict codec helpers
+   at token, callback, and support-reference boundaries.
 
 ## Architecture
 
@@ -79,6 +92,7 @@ examples/
   foundation-order-cleanup/       # validation + normalization
   batched-order-windowing/        # deterministic grouping + chunking + paging
   catalog-enrichment-fanout/      # bounded async provider fan-out
+  invitation-codecs/              # URL-safe tokens + callback state + references
   request-tracing-log-capture/    # correlation-aware log capture
   shutdown-aware-worker/          # timeout and shutdown-aware worker loop
   temp-resource-test-harness/     # temporary filesystem test harness

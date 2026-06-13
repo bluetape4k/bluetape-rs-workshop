@@ -36,6 +36,17 @@ bounded fan-out, timeout, shutdown-aware worker 흐름을 예제로 보여줍니
 
 ![Milestone 0.2.0 sequence](docs/images/readme-diagrams/workshop-collections-async-sequence.png)
 
+## Milestone 0.3.0: Codec Examples
+
+0.3.0은 codec helper를 독립 encode/decode 조각이 아니라 workflow 경계에
+놓는 예제입니다. 첫 예제는 invitation 요청을 검증하고, URL-safe callback
+state를 만들며, support-facing reference가 recipient 식별자를 직접 드러내지
+않도록 분리합니다.
+
+| Example | Focus | Run |
+|---|---|---|
+| [`invitation-codecs`](examples/invitation-codecs/README.ko.md) | URL-safe invitation token, callback state, Base58 support reference, malformed-input 오류 | `cargo test -p invitation-codecs` |
+
 ## 학습 순서
 
 1. `foundation-order-cleanup`에서 검증 헬퍼로 원천 파트너 입력을 타입이 있는
@@ -49,6 +60,8 @@ bounded fan-out, timeout, shutdown-aware worker 흐름을 예제로 보여줍니
    나누는 bounded async 작업을 봅니다.
 6. `shutdown-aware-worker`에서 worker가 정상 완료, timeout, shutdown을 어떻게
    구분해 돌려주는지 봅니다.
+7. `invitation-codecs`에서 token, callback, support reference 경계에 strict
+   codec helper를 두는 방식을 봅니다.
 
 ## Architecture
 
@@ -76,6 +89,7 @@ examples/
   foundation-order-cleanup/       # validation + normalization
   batched-order-windowing/        # deterministic grouping + chunking + paging
   catalog-enrichment-fanout/      # bounded async provider fan-out
+  invitation-codecs/              # URL-safe tokens + callback state + references
   request-tracing-log-capture/    # correlation-aware log capture
   shutdown-aware-worker/          # timeout and shutdown-aware worker loop
   temp-resource-test-harness/     # temporary filesystem test harness

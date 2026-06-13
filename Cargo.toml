@@ -3,6 +3,7 @@ members = [
     "examples/foundation-order-cleanup",
     "examples/batched-order-windowing",
     "examples/catalog-enrichment-fanout",
+    "examples/invitation-codecs",
     "examples/request-tracing-log-capture",
     "examples/shutdown-aware-worker",
     "examples/temp-resource-test-harness",
@@ -19,6 +20,7 @@ repository = "https://github.com/bluetape4k/bluetape-rs-workshop"
 bluetape-rs-core = "0.3.1"
 bluetape-rs-async = "0.3.1"
 bluetape-rs-collections = "0.3.1"
+bluetape-rs-codec = "0.4.0"
 bluetape-rs-logging = "0.3.1"
 bluetape-rs-test = "0.3.1"
 thiserror = "2.0.17"
