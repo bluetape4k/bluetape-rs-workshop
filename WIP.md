@@ -27,3 +27,10 @@ from isolated foundation examples into integrated backend scenarios.
 | [#3](https://github.com/bluetape4k/bluetape-rs-workshop/issues/3) | `request-tracing-log-capture` | `bluetape-rs-core`, `bluetape-rs-logging` | Request handling emits correlation-aware logs that tests can assert |
 | [#4](https://github.com/bluetape4k/bluetape-rs-workshop/issues/4) | `temp-resource-test-harness` | `bluetape-rs-core`, `bluetape-rs-test` | Temporary workspaces isolate file tests and clean up deterministically |
 
+## 0.2.0 Delivery Scope
+
+| Issue | Example | bluetape-rs APIs | Done When |
+|---|---|---|---|
+| [#6](https://github.com/bluetape4k/bluetape-rs-workshop/issues/6) | `catalog-enrichment-fanout` | `bluetape-rs-core`, `bluetape-rs-logging`, `bluetape-rs-collections`, `bluetape-rs-async` | Bounded provider fan-out handles required provider failures, optional warnings, timeout control, and deterministic paging |
+| [#7](https://github.com/bluetape4k/bluetape-rs-workshop/issues/7) | `batched-order-windowing` | `bluetape-rs-core`, `bluetape-rs-logging`, `bluetape-rs-collections` | Partner order events are validated, grouped, chunked, sorted, and returned through explicit page metadata |
+| [#8](https://github.com/bluetape4k/bluetape-rs-workshop/issues/8) | `shutdown-aware-worker` | `bluetape-rs-core`, `bluetape-rs-logging`, `bluetape-rs-collections`, `bluetape-rs-async` | Worker runs grouped work with typed timeout and shutdown cancellation behavior |

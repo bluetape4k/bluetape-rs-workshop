@@ -21,6 +21,18 @@
 | [`request-tracing-log-capture`](examples/request-tracing-log-capture/README.ko.md) | correlation-aware 요청 로그 기록과 검증 | `cargo test -p request-tracing-log-capture` |
 | [`temp-resource-test-harness`](examples/temp-resource-test-harness/README.ko.md) | 임시 작업공간 기반 파일 테스트 격리 | `cargo test -p temp-resource-test-harness` |
 
+## Milestone 0.2.0: Collections and Async Examples
+
+0.2.0 마일스톤은 `bluetape-rs-collections`와 `bluetape-rs-async` 예제를
+추가합니다. 0.1.0의 검증/로깅 기반을 유지하면서 결정적 그룹화, bounded
+fan-out, timeout, shutdown-aware worker 동작을 다룹니다.
+
+| Example | Focus | Run |
+|---|---|---|
+| [`batched-order-windowing`](examples/batched-order-windowing/README.ko.md) | 파트너 주문 이벤트 그룹화, 결정적 배치 chunk, 페이지 반환 | `cargo test -p batched-order-windowing` |
+| [`catalog-enrichment-fanout`](examples/catalog-enrichment-fanout/README.ko.md) | bounded provider fan-out, 필수 실패, 선택 warning, timeout 제어 | `cargo test -p catalog-enrichment-fanout` |
+| [`shutdown-aware-worker`](examples/shutdown-aware-worker/README.ko.md) | timeout과 shutdown cancellation을 가진 worker loop | `cargo test -p shutdown-aware-worker` |
+
 ## Learning Path
 
 1. `foundation-order-cleanup`에서 검증 헬퍼로 원천 파트너 입력을 타입이 있는
@@ -29,6 +41,10 @@
    테스트에서 검증되는 방식을 봅니다.
 3. `temp-resource-test-harness`에서 파일을 만드는 테스트를 임시 작업공간과
    결정적 정리로 격리하는 방식을 봅니다.
+4. `batched-order-windowing`에서 결정적 그룹화, chunking, paging을 적용합니다.
+5. `catalog-enrichment-fanout`에서 required/optional 실패 계약을 가진 bounded
+   async provider 작업을 봅니다.
+6. `shutdown-aware-worker`에서 timeout과 shutdown cancellation 상태를 봅니다.
 
 ## Architecture
 
@@ -50,7 +66,10 @@
 ```text
 examples/
   foundation-order-cleanup/       # validation + normalization
+  batched-order-windowing/        # deterministic grouping + chunking + paging
+  catalog-enrichment-fanout/      # bounded async provider fan-out
   request-tracing-log-capture/    # correlation-aware log capture
+  shutdown-aware-worker/          # timeout and shutdown-aware worker loop
   temp-resource-test-harness/     # temporary filesystem test harness
 docs/images/readme-diagrams/      # README diagram sources and rendered PNGs
 ```

@@ -1,0 +1,16 @@
+[package]
+name = "catalog-enrichment-fanout"
+version = "0.1.0"
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+bluetape-rs-async.workspace = true
+bluetape-rs-collections.workspace = true
+bluetape-rs-core.workspace = true
+bluetape-rs-logging.workspace = true
+thiserror.workspace = true
+tokio.workspace = true
+tracing.workspace = true
