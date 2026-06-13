@@ -1,0 +1,15 @@
+digraph "workshop-collections-async-sequence" {
+  graph [rankdir=LR, bgcolor="#fbfaf6", margin=0.2, nodesep=0.75, ranksep=0.9];
+  node [shape=box, style="rounded,filled", fontname="Architects Daughter", fontsize=18, color="#48758d", fillcolor="#d7ecf2"];
+  edge [fontname="Comic Mono", fontsize=11, color="#47616f", fontcolor="#35505f", penwidth=2];
+  learner [label="Learner\nruns examples", fillcolor="#d7ecf2", color="#48758d"];
+  windowing [label="Windowing\ngroup + chunk", fillcolor="#dbe8d4", color="#5d8a62"];
+  catalog [label="Catalog Fan-out\nproviders", fillcolor="#f7e5aa", color="#b99b5d"];
+  worker [label="Worker Loop\nshutdown signal", fillcolor="#eadcf5", color="#8a6bb0"];
+  learner -> windowing [label="1. page partner events", color="#47616f", fontcolor="#47616f"];
+  windowing -> learner [label="deterministic Page", color="#4f8b63", fontcolor="#4f8b63"];
+  learner -> catalog [label="2. enrich with providers", color="#a78335", fontcolor="#a78335"];
+  catalog -> learner [label="required error or warnings", color="#4f8b63", fontcolor="#4f8b63"];
+  learner -> worker [label="3. run worker with signal", color="#47616f", fontcolor="#47616f"];
+  worker -> learner [label="completed / timed out / cancelled", color="#4f8b63", fontcolor="#4f8b63"];
+}

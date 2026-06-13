@@ -1,0 +1,18 @@
+graph 1 18.785 5.8472
+node baseline 1.684 5.4375 3.2326 0.81944 "0.1.0 Baseline\nvalidation + logging + tests" rounded,filled box #48758d #d7ecf2
+node windowing 7.0469 3.6319 3.0764 0.81944 "batched-order-windowing\ngroup + chunk + page" rounded,filled box #5d8a62 #dbe8d4
+node catalog 12.014 2.0347 3.2431 0.81944 "catalog-enrichment-fanout\nbounded provider fan-out" rounded,filled box #b99b5d #f7e5aa
+node worker 17.252 0.9375 3.066 0.81944 "shutdown-aware-worker\ntimeout + shutdown" rounded,filled box #8a6bb0 #eadcf5
+node core 1.684 3.7292 2.1389 0.81944 "bluetape-rs-core\ninput validation" rounded,filled box #91a08c #edf1e9
+node collections 1.684 2.1042 3.3681 0.81944 "bluetape-rs-collections\ngroup_by + chunks + Page" rounded,filled box #91a08c #edf1e9
+node async 7.0469 0.40972 3.191 0.81944 "bluetape-rs-async\nfan-out + timeout + signal" rounded,filled box #91a08c #edf1e9
+edge baseline windowing 4 2.9286 5.021 3.7361 4.7477 4.7941 4.3897 5.6336 4.1055 "validated rows" 4.4097 4.785 solid #47616f
+edge baseline catalog 7 3.3051 5.4258 4.7522 5.3642 6.9112 5.1433 8.6424 4.4236 9.7255 3.9733 10.799 3.1198 11.43 2.5644 "request context" 7.0469 5.3219 solid #a78335
+edge windowing catalog 4 8.3456 3.2165 9.019 2.9987 9.8463 2.7312 10.543 2.5057 "paged rows" 9.5174 3.0175 solid #4f8b63
+edge catalog worker 4 13.641 1.6951 14.243 1.5682 14.929 1.4238 15.539 1.2953 "async contract" 14.677 1.6729 solid #a78335
+edge core windowing 4 2.7583 3.7098 3.4917 3.6965 4.4834 3.6784 5.327 3.663 solid #47616f
+edge collections windowing 4 3.1522 2.5206 3.8506 2.7206 4.69 2.961 5.4092 3.1669 solid #4f8b63
+edge collections catalog 4 3.3703 2.0929 5.249 2.0802 8.2867 2.0598 10.212 2.0468 solid #4f8b63
+edge async catalog 4 8.3263 0.82609 9.0117 1.0516 9.8608 1.3309 10.57 1.5643 solid #a78335
+edge async worker 4 8.6453 0.4919 10.517 0.58897 13.619 0.74981 15.539 0.84939 solid #a78335
+stop

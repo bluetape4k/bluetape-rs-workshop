@@ -12,6 +12,32 @@ dependencies = [
 ]
 
 [[package]]
+name = "batched-order-windowing"
+version = "0.1.0"
+dependencies = [
+ "bluetape-rs-collections",
+ "bluetape-rs-core",
+ "bluetape-rs-logging",
+ "thiserror",
+ "tracing",
+]
+
+[[package]]
+name = "bluetape-rs-async"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "54bd2f558366e4f631133ec604b409d392c3cc58f77128c97b555e71fbb8c18b"
+dependencies = [
+ "tokio",
+]
+
+[[package]]
+name = "bluetape-rs-collections"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "96253e4b93d48166c85001bc4a3f70f4834925b776743beb0bca1fdbf2f2bd94"
+
+[[package]]
 name = "bluetape-rs-core"
 version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -34,6 +60,19 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e0e3956579ab091cc167c6e98f00202bc42e36652f5e144c66fd0360b297515e"
 dependencies = [
  "tokio",
+]
+
+[[package]]
+name = "catalog-enrichment-fanout"
+version = "0.1.0"
+dependencies = [
+ "bluetape-rs-async",
+ "bluetape-rs-collections",
+ "bluetape-rs-core",
+ "bluetape-rs-logging",
+ "thiserror",
+ "tokio",
+ "tracing",
 ]
 
 [[package]]
@@ -140,6 +179,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "shutdown-aware-worker"
+version = "0.1.0"
+dependencies = [
+ "bluetape-rs-async",
+ "bluetape-rs-collections",
+ "bluetape-rs-core",
+ "bluetape-rs-logging",
+ "thiserror",
+ "tokio",
+ "tracing",
+]
+
+[[package]]
 name = "syn"
 version = "2.0.117"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -195,6 +247,18 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8fc7f01b389ac15039e4dc9531aa973a135d7a4135281b12d7c1bc79fd57fffe"
 dependencies = [
  "pin-project-lite",
+ "tokio-macros",
+]
+
+[[package]]
+name = "tokio-macros"
+version = "2.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "385a6cb71ab9ab790c5fe8d67f1645e6c450a7ce006a33de03daa956cf70a496"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
 ]
 
 [[package]]

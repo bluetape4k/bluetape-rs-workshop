@@ -1,0 +1,15 @@
+graph 1 23.785 0.81944
+node step0 1.7361 0.40972 3.4722 0.81944 "CatalogRequest\nrows + providers + timeout" rounded,filled box #48758d #d7ecf2
+node step1 5.7049 0.40972 2.6597 0.81944 "Validate\nmetadata + page size" rounded,filled box #91a08c #edf1e9
+node step2 9.1372 0.40972 2.3993 0.81944 "group + sort\ndeterministic rows" rounded,filled box #5d8a62 #dbe8d4
+node step3 12.595 0.40972 2.7118 0.81944 "map_bounded_collect\nprovider tasks" rounded,filled box #b99b5d #f7e5aa
+node step4 16.174 0.40972 2.6389 0.81944 "Required failure\ntyped request error" rounded,filled box #b95f7a #f5d3df
+node step5 19.46 0.40972 2.1285 0.81944 "Optional failure\nproduct warning" rounded,filled box #8a6bb0 #eadcf5
+node step6 22.606 0.40972 2.3576 0.81944 "Page\nenriched products" rounded,filled box #5d8a62 #dbe8d4
+edge step0 step1 4 3.4786 0.40972 3.7175 0.40972 3.9613 0.40972 4.1956 0.40972 solid #47616f
+edge step1 step2 4 7.0399 0.40972 7.2737 0.40972 7.5177 0.40972 7.7529 0.40972 solid #47616f
+edge step2 step3 4 10.341 0.40972 10.572 0.40972 10.817 0.40972 11.057 0.40972 solid #47616f
+edge step3 step4 4 13.957 0.40972 14.19 0.40972 14.433 0.40972 14.669 0.40972 solid #47616f
+edge step4 step5 4 17.499 0.40972 17.736 0.40972 17.982 0.40972 18.216 0.40972 solid #47616f
+edge step5 step6 4 20.53 0.40972 20.76 0.40972 21.007 0.40972 21.247 0.40972 solid #47616f
+stop

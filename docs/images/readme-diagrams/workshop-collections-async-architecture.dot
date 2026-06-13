@@ -1,0 +1,21 @@
+digraph "workshop-collections-async-architecture" {
+  graph [rankdir=LR, bgcolor="#fbfaf6", margin=0.2, nodesep=0.75, ranksep=0.9];
+  node [shape=box, style="rounded,filled", fontname="Architects Daughter", fontsize=18, color="#48758d", fillcolor="#d7ecf2"];
+  edge [fontname="Comic Mono", fontsize=11, color="#47616f", fontcolor="#35505f", penwidth=2];
+  baseline [label="0.1.0 Baseline\nvalidation + logging + tests", fillcolor="#d7ecf2", color="#48758d"];
+  windowing [label="batched-order-windowing\ngroup + chunk + page", fillcolor="#dbe8d4", color="#5d8a62"];
+  catalog [label="catalog-enrichment-fanout\nbounded provider fan-out", fillcolor="#f7e5aa", color="#b99b5d"];
+  worker [label="shutdown-aware-worker\ntimeout + shutdown", fillcolor="#eadcf5", color="#8a6bb0"];
+  core [label="bluetape-rs-core\ninput validation", fillcolor="#edf1e9", color="#91a08c"];
+  collections [label="bluetape-rs-collections\ngroup_by + chunks + Page", fillcolor="#edf1e9", color="#91a08c"];
+  async [label="bluetape-rs-async\nfan-out + timeout + signal", fillcolor="#edf1e9", color="#91a08c"];
+  baseline -> windowing [label="validated rows", color="#47616f", fontcolor="#47616f"];
+  baseline -> catalog [label="request context", color="#a78335", fontcolor="#a78335"];
+  windowing -> catalog [label="paged rows", color="#4f8b63", fontcolor="#4f8b63"];
+  catalog -> worker [label="async contract", color="#a78335", fontcolor="#a78335"];
+  core -> windowing [label="", color="#47616f", fontcolor="#47616f"];
+  collections -> windowing [label="", color="#4f8b63", fontcolor="#4f8b63"];
+  collections -> catalog [label="", color="#4f8b63", fontcolor="#4f8b63"];
+  async -> catalog [label="", color="#a78335", fontcolor="#a78335"];
+  async -> worker [label="", color="#a78335", fontcolor="#a78335"];
+}

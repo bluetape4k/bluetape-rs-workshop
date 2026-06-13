@@ -1,0 +1,15 @@
+graph 1 22.253 0.81944
+node step0 1.8299 0.40972 3.6597 0.81944 "WorkerConfig\ncorrelation + timeout + items" rounded,filled box #48758d #d7ecf2
+node step1 6.0017 0.40972 2.8785 0.81944 "Validate\nbatch size + item keys" rounded,filled box #91a08c #edf1e9
+node step2 9.0069 0.40972 1.3264 0.81944 "group_by\nqueue" rounded,filled box #5d8a62 #dbe8d4
+node step3 11.783 0.40972 2.4201 0.81944 "chunks\nbounded batch size" rounded,filled box #b99b5d #f7e5aa
+node step4 14.903 0.40972 2.0139 0.81944 "with_timeout\ntyped TimedOut" rounded,filled box #b95f7a #f5d3df
+node step5 17.835 0.40972 2.0451 0.81944 "shutdown_signal\ntyped Cancelled" rounded,filled box #8a6bb0 #eadcf5
+node step6 21.007 0.40972 2.4931 0.81944 "WorkerReport\nstatus + processed" rounded,filled box #5d8a62 #dbe8d4
+edge step0 step1 4 3.6614 0.40972 3.9006 0.40972 4.1443 0.40972 4.3796 0.40972 solid #47616f
+edge step1 step2 4 7.4477 0.40972 7.6909 0.40972 7.9362 0.40972 8.1574 0.40972 solid #47616f
+edge step2 step3 4 9.6756 0.40972 9.8926 0.40972 10.143 0.40972 10.393 0.40972 solid #47616f
+edge step3 step4 4 12.997 0.40972 13.232 0.40972 13.479 0.40972 13.713 0.40972 solid #47616f
+edge step4 step5 4 15.916 0.40972 16.146 0.40972 16.393 0.40972 16.631 0.40972 solid #47616f
+edge step5 step6 4 18.861 0.40972 19.09 0.40972 19.336 0.40972 19.578 0.40972 solid #47616f
+stop

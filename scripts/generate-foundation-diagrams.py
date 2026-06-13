@@ -90,10 +90,11 @@ def svg_header(d: Diagram) -> str:
   <title id="title">{esc(d.title)}</title>
   <desc id="desc">{esc(d.subtitle)}</desc>
   <defs>
-    <marker id="arrow-main" viewBox="0 0 8 8" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M 1 1 L 7 4 L 1 7 Z" fill="#47616f"/></marker>
-    <marker id="arrow-success" viewBox="0 0 8 8" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M 1 1 L 7 4 L 1 7 Z" fill="#4f8b63"/></marker>
-    <marker id="arrow-error" viewBox="0 0 8 8" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M 1 1 L 7 4 L 1 7 Z" fill="#b95f7a"/></marker>
-    <marker id="arrow-amber" viewBox="0 0 8 8" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M 1 1 L 7 4 L 1 7 Z" fill="#a78335"/></marker>
+    <filter id="frame-shadow" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#b7c7d1" flood-opacity="0.22"/></filter>
+    <marker id="arrow-main" viewBox="0 0 5 5" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M 0.5 0.5 L 4.5 2.5 L 0.5 4.5 Z" fill="#47616f"/></marker>
+    <marker id="arrow-success" viewBox="0 0 5 5" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M 0.5 0.5 L 4.5 2.5 L 0.5 4.5 Z" fill="#4f8b63"/></marker>
+    <marker id="arrow-error" viewBox="0 0 5 5" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M 0.5 0.5 L 4.5 2.5 L 0.5 4.5 Z" fill="#b95f7a"/></marker>
+    <marker id="arrow-amber" viewBox="0 0 5 5" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M 0.5 0.5 L 4.5 2.5 L 0.5 4.5 Z" fill="#a78335"/></marker>
     <style>
       @font-face {{ font-family: 'Architects Daughter'; src: url('file://{ARCHITECTS}') format('truetype'); }}
       @font-face {{ font-family: 'Comic Mono'; src: url('file://{COMIC}') format('truetype'); }}
@@ -114,6 +115,7 @@ def svg_header(d: Diagram) -> str:
     </style>
   </defs>
   <rect width="{d.width}" height="{d.height}" fill="#fbfaf6"/>
+  <rect x="24" y="22" width="{d.width - 48}" height="{d.height - 44}" rx="26" fill="#ffffff" stroke="#c9d8e2" stroke-width="2.5" filter="url(#frame-shadow)"/>
   <text class="title" x="{d.width // 2}" y="58" text-anchor="middle">{esc(d.title)}</text>
   <text class="subtitle" x="{d.width // 2}" y="92" text-anchor="middle">{esc(d.subtitle)}</text>
 '''
@@ -177,6 +179,17 @@ def render_flow(d: Diagram) -> str:
                 '  <text class="band-label" x="92" y="356">Milestone 0.1.0 Examples</text>',
                 '  <rect class="band" x="56" y="548" width="1368" height="132"/>',
                 '  <text class="band-label" x="92" y="586">bluetape-rs Libraries</text>',
+            ]
+        )
+    if d.name == "workshop-collections-async-architecture":
+        parts.extend(
+            [
+                '  <rect class="band" x="56" y="136" width="1368" height="124"/>',
+                '  <text class="band-label" x="92" y="172">0.1.0 Baseline</text>',
+                '  <rect class="band" x="56" y="304" width="1368" height="208"/>',
+                '  <text class="band-label" x="92" y="340">0.2.0 Examples</text>',
+                '  <rect class="band" x="56" y="558" width="1368" height="132"/>',
+                '  <text class="band-label" x="92" y="594">bluetape-rs Libraries</text>',
             ]
         )
     for box in d.boxes:
@@ -321,6 +334,101 @@ def diagrams() -> list[Diagram]:
                 Route("scratch", "learner", ((1288, 624), (199, 624)), "cleanup verified", "green"),
             ),
         ),
+        Diagram(
+            name="workshop-collections-async-architecture",
+            title="Milestone 0.2.0 Collections + Async Architecture",
+            subtitle="The second lane keeps validation and logging, then adds deterministic collections and bounded Tokio control.",
+            width=1480,
+            height=780,
+            footer="Each crate stays independent: learners can run one focused example or the full workspace gate.",
+            boxes=(
+                Box("baseline", "0.1.0 Baseline", "validation + logging + tests", 112, 178, 300, 72, "blue"),
+                Box("windowing", "batched-order-windowing", "group + chunk + page", 164, 374, 314, 88, "green"),
+                Box("catalog", "catalog-enrichment-fanout", "bounded provider fan-out", 584, 374, 340, 88, "amber"),
+                Box("worker", "shutdown-aware-worker", "timeout + shutdown", 1030, 374, 300, 88, "lavender"),
+                Box("core", "bluetape-rs-core", "input validation", 140, 608, 264, 64, "neutral"),
+                Box("collections", "bluetape-rs-collections", "group_by + chunks + Page", 476, 608, 330, 64, "neutral"),
+                Box("async", "bluetape-rs-async", "fan-out + timeout + signal", 878, 608, 320, 64, "neutral"),
+            ),
+            routes=(
+                Route("baseline", "windowing", ((262, 250), (262, 374)), "validated rows", "main"),
+                Route("baseline", "catalog", ((412, 214), (754, 214), (754, 374)), "request context", "amber"),
+                Route("windowing", "catalog", ((478, 418), (584, 418)), "paged rows", "green"),
+                Route("catalog", "worker", ((924, 418), (1030, 418)), "async contract", "amber"),
+                Route("core", "windowing", ((272, 608), (272, 462)), "", "main"),
+                Route("collections", "windowing", ((570, 608), (570, 528), (321, 528), (321, 462)), "", "green"),
+                Route("collections", "catalog", ((641, 608), (641, 462)), "", "green"),
+                Route("async", "catalog", ((984, 608), (984, 548), (840, 548), (840, 462)), "", "amber"),
+                Route("async", "worker", ((1180, 608), (1180, 462)), "", "amber"),
+            ),
+        ),
+        Diagram(
+            name="workshop-collections-async-sequence",
+            title="Milestone 0.2.0 Learning Sequence",
+            subtitle="The lane moves from deterministic collections into bounded fan-out and shutdown-aware worker control.",
+            width=1480,
+            height=860,
+            footer="Run the package tests individually, then finish with make ci for the full workshop contract.",
+            kind="sequence",
+            boxes=(
+                Box("learner", "Learner", "runs examples", 104, 150, 190, 64, "blue"),
+                Box("windowing", "Windowing", "group + chunk", 398, 150, 230, 64, "green"),
+                Box("catalog", "Catalog Fan-out", "providers", 774, 150, 236, 64, "amber"),
+                Box("worker", "Worker Loop", "shutdown signal", 1172, 150, 210, 64, "lavender"),
+            ),
+            routes=(
+                Route("learner", "windowing", ((199, 270), (513, 270)), "1. page partner events", "main"),
+                Route("windowing", "learner", ((513, 330), (199, 330)), "deterministic Page", "green"),
+                Route("learner", "catalog", ((199, 430), (892, 430)), "2. enrich with providers", "amber"),
+                Route("catalog", "learner", ((892, 490), (199, 490)), "required error or warnings", "green"),
+                Route("learner", "worker", ((199, 590), (1277, 590)), "3. run worker with signal", "main"),
+                Route("worker", "learner", ((1277, 650), (199, 650)), "completed / timed out / cancelled", "green"),
+            ),
+        ),
+        flow_diagram(
+            "example-batched-order-windowing",
+            "batched-order-windowing Flow",
+            "Flat partner events become sorted tenant/channel batches with explicit page metadata.",
+            ("BatchRun", "correlation + page + events", "blue"),
+            [
+                ("Validate", "required text + positive qty", "neutral"),
+                ("group_by", "tenant + channel", "green"),
+                ("sort", "stable output order", "amber"),
+                ("chunks", "page-size batches", "lavender"),
+                ("Page", "items + total_items", "green"),
+            ],
+            "Use this when collection helpers need deterministic README-visible behavior.",
+        ),
+        flow_diagram(
+            "example-catalog-enrichment-fanout",
+            "catalog-enrichment-fanout Flow",
+            "Catalog rows fan out to in-memory providers with bounded concurrency and explicit timeout control.",
+            ("CatalogRequest", "rows + providers + timeout", "blue"),
+            [
+                ("Validate", "metadata + page size", "neutral"),
+                ("group + sort", "deterministic rows", "green"),
+                ("map_bounded_collect", "provider tasks", "amber"),
+                ("Required failure", "typed request error", "pink"),
+                ("Optional failure", "product warning", "lavender"),
+                ("Page", "enriched products", "green"),
+            ],
+            "Use this to explain required-vs-optional async provider contracts.",
+        ),
+        flow_diagram(
+            "example-shutdown-aware-worker",
+            "shutdown-aware-worker Flow",
+            "Grouped work runs until completion, timeout, or an explicit shutdown signal.",
+            ("WorkerConfig", "correlation + timeout + items", "blue"),
+            [
+                ("Validate", "batch size + item keys", "neutral"),
+                ("group_by", "queue", "green"),
+                ("chunks", "bounded batch size", "amber"),
+                ("with_timeout", "typed TimedOut", "pink"),
+                ("shutdown_signal", "typed Cancelled", "lavender"),
+                ("WorkerReport", "status + processed", "green"),
+            ],
+            "Use this when worker examples need lifecycle behavior instead of hidden sleeps.",
+        ),
         flow_diagram(
             "example-foundation-order-cleanup",
             "foundation-order-cleanup Flow",
@@ -373,7 +481,7 @@ def flow_diagram(
     footer: str,
 ) -> Diagram:
     width = 980
-    height = 980
+    height = 1080
     x = 340
     boxes: list[Box] = [Box("step0", first[0], first[1], x, 170, 300, 78, first[2])]
     for i, (t, d, tone) in enumerate(rest, start=1):
@@ -401,7 +509,7 @@ def render(d: Diagram) -> None:
 
 def validate_svg(d: Diagram) -> None:
     svg = (OUT / f"{d.name}.svg").read_text(encoding="utf-8")
-    for required in ("Architects Daughter", "Comic Mono", 'markerWidth="8"', 'markerHeight="8"'):
+    for required in ("Architects Daughter", "Comic Mono", 'markerWidth="5"', 'markerHeight="5"'):
         if required not in svg:
             raise SystemExit(f"{d.name}: missing {required}")
     for forbidden in ("Inter", "Arial", "Helvetica"):

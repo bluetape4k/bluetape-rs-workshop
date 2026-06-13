@@ -1,0 +1,18 @@
+digraph "example-catalog-enrichment-fanout" {
+  graph [rankdir=LR, bgcolor="#fbfaf6", margin=0.2, nodesep=0.75, ranksep=0.9];
+  node [shape=box, style="rounded,filled", fontname="Architects Daughter", fontsize=18, color="#48758d", fillcolor="#d7ecf2"];
+  edge [fontname="Comic Mono", fontsize=11, color="#47616f", fontcolor="#35505f", penwidth=2];
+  step0 [label="CatalogRequest\nrows + providers + timeout", fillcolor="#d7ecf2", color="#48758d"];
+  step1 [label="Validate\nmetadata + page size", fillcolor="#edf1e9", color="#91a08c"];
+  step2 [label="group + sort\ndeterministic rows", fillcolor="#dbe8d4", color="#5d8a62"];
+  step3 [label="map_bounded_collect\nprovider tasks", fillcolor="#f7e5aa", color="#b99b5d"];
+  step4 [label="Required failure\ntyped request error", fillcolor="#f5d3df", color="#b95f7a"];
+  step5 [label="Optional failure\nproduct warning", fillcolor="#eadcf5", color="#8a6bb0"];
+  step6 [label="Page\nenriched products", fillcolor="#dbe8d4", color="#5d8a62"];
+  step0 -> step1 [label="", color="#47616f", fontcolor="#47616f"];
+  step1 -> step2 [label="", color="#47616f", fontcolor="#47616f"];
+  step2 -> step3 [label="", color="#47616f", fontcolor="#47616f"];
+  step3 -> step4 [label="", color="#47616f", fontcolor="#47616f"];
+  step4 -> step5 [label="", color="#47616f", fontcolor="#47616f"];
+  step5 -> step6 [label="", color="#47616f", fontcolor="#47616f"];
+}

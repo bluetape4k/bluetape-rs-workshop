@@ -1,0 +1,13 @@
+graph 1 20.743 0.81944
+node step0 1.7361 0.40972 3.4722 0.81944 "BatchRun\ncorrelation + page + events" rounded,filled box #48758d #d7ecf2
+node step1 6.0799 0.40972 3.4097 0.81944 "Validate\nrequired text + positive qty" rounded,filled box #91a08c #edf1e9
+node step2 9.7465 0.40972 2.1181 0.81944 "group_by\ntenant + channel" rounded,filled box #5d8a62 #dbe8d4
+node step3 12.965 0.40972 2.5139 0.81944 "sort\nstable output order" rounded,filled box #b99b5d #f7e5aa
+node step4 16.252 0.40972 2.2535 0.81944 "chunks\npage-size batches" rounded,filled box #8a6bb0 #eadcf5
+node step5 19.512 0.40972 2.4618 0.81944 "Page\nitems + total_items" rounded,filled box #5d8a62 #dbe8d4
+edge step0 step1 4 3.4744 0.40972 3.7092 0.40972 3.9512 0.40972 4.1885 0.40972 solid #47616f
+edge step1 step2 4 7.7907 0.40972 8.0305 0.40972 8.2731 0.40972 8.5018 0.40972 solid #47616f
+edge step2 step3 4 10.81 0.40972 11.038 0.40972 11.283 0.40972 11.524 0.40972 solid #47616f
+edge step3 step4 4 14.225 0.40972 14.46 0.40972 14.706 0.40972 14.942 0.40972 solid #47616f
+edge step4 step5 4 17.383 0.40972 17.612 0.40972 17.857 0.40972 18.096 0.40972 solid #47616f
+stop
