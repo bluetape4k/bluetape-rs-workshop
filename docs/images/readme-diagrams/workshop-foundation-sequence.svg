@@ -2,10 +2,11 @@
   <title id="title">Milestone 0.1.0 Foundation Sequence</title>
   <desc id="desc">The learner moves from raw input through validation, log capture, temp resources, and assertions.</desc>
   <defs>
-    <marker id="arrow-main" viewBox="0 0 8 8" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M 1 1 L 7 4 L 1 7 Z" fill="#47616f"/></marker>
-    <marker id="arrow-success" viewBox="0 0 8 8" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M 1 1 L 7 4 L 1 7 Z" fill="#4f8b63"/></marker>
-    <marker id="arrow-error" viewBox="0 0 8 8" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M 1 1 L 7 4 L 1 7 Z" fill="#b95f7a"/></marker>
-    <marker id="arrow-amber" viewBox="0 0 8 8" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M 1 1 L 7 4 L 1 7 Z" fill="#a78335"/></marker>
+    <filter id="frame-shadow" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#b7c7d1" flood-opacity="0.22"/></filter>
+    <marker id="arrow-main" viewBox="0 0 5 5" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M 0.5 0.5 L 4.5 2.5 L 0.5 4.5 Z" fill="#47616f"/></marker>
+    <marker id="arrow-success" viewBox="0 0 5 5" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M 0.5 0.5 L 4.5 2.5 L 0.5 4.5 Z" fill="#4f8b63"/></marker>
+    <marker id="arrow-error" viewBox="0 0 5 5" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M 0.5 0.5 L 4.5 2.5 L 0.5 4.5 Z" fill="#b95f7a"/></marker>
+    <marker id="arrow-amber" viewBox="0 0 5 5" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M 0.5 0.5 L 4.5 2.5 L 0.5 4.5 Z" fill="#a78335"/></marker>
     <style>
       @font-face { font-family: 'Architects Daughter'; src: url('file:///Users/debop/Library/Fonts/ArchitectsDaughter-Regular.ttf') format('truetype'); }
       @font-face { font-family: 'Comic Mono'; src: url('file:///Users/debop/Library/Fonts/ComicMono.ttf') format('truetype'); }
@@ -26,6 +27,7 @@
     </style>
   </defs>
   <rect width="1480" height="820" fill="#fbfaf6"/>
+  <rect x="24" y="22" width="1432" height="776" rx="26" fill="#ffffff" stroke="#c9d8e2" stroke-width="2.5" filter="url(#frame-shadow)"/>
   <text class="title" x="740" y="58" text-anchor="middle">Milestone 0.1.0 Foundation Sequence</text>
   <text class="subtitle" x="740" y="92" text-anchor="middle">The learner moves from raw input through validation, log capture, temp resources, and assertions.</text>
 

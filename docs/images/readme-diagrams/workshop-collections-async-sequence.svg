@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="860" viewBox="0 0 1480 860" role="img" aria-labelledby="title desc">
+  <title id="title">Milestone 0.2.0 Learning Sequence</title>
+  <desc id="desc">The lane moves from deterministic collections into bounded fan-out and shutdown-aware worker control.</desc>
+  <defs>
+    <filter id="frame-shadow" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#b7c7d1" flood-opacity="0.22"/></filter>
+    <marker id="arrow-main" viewBox="0 0 5 5" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M 0.5 0.5 L 4.5 2.5 L 0.5 4.5 Z" fill="#47616f"/></marker>
+    <marker id="arrow-success" viewBox="0 0 5 5" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M 0.5 0.5 L 4.5 2.5 L 0.5 4.5 Z" fill="#4f8b63"/></marker>
+    <marker id="arrow-error" viewBox="0 0 5 5" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M 0.5 0.5 L 4.5 2.5 L 0.5 4.5 Z" fill="#b95f7a"/></marker>
+    <marker id="arrow-amber" viewBox="0 0 5 5" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M 0.5 0.5 L 4.5 2.5 L 0.5 4.5 Z" fill="#a78335"/></marker>
+    <style>
+      @font-face { font-family: 'Architects Daughter'; src: url('file:///Users/debop/Library/Fonts/ArchitectsDaughter-Regular.ttf') format('truetype'); }
+      @font-face { font-family: 'Comic Mono'; src: url('file:///Users/debop/Library/Fonts/ComicMono.ttf') format('truetype'); }
+      .title { font-family: 'Architects Daughter'; font-size: 38px; fill: #243845; }
+      .subtitle, .detail, .route-label, .footer { font-family: 'Comic Mono'; fill: #536d7d; }
+      .subtitle { font-size: 15px; }
+      .card-title, .band-label { font-family: 'Architects Daughter'; fill: #243845; }
+      .card-title { font-size: 22px; }
+      .band-label { font-size: 21px; }
+      .detail { font-size: 14px; }
+      .route-label { font-size: 13px; }
+      .footer { font-size: 14px; }
+      .band { fill: #ffffff; stroke: #d8e2e8; stroke-width: 2; rx: 16; }
+      .line-main { fill: none; stroke: #47616f; stroke-width: 3; marker-end: url(#arrow-main); }
+      .line-success { fill: none; stroke: #4f8b63; stroke-width: 3; marker-end: url(#arrow-success); }
+      .line-error { fill: none; stroke: #b95f7a; stroke-width: 3; marker-end: url(#arrow-error); }
+      .line-amber { fill: none; stroke: #a78335; stroke-width: 3; marker-end: url(#arrow-amber); }
+    </style>
+  </defs>
+  <rect width="1480" height="860" fill="#fbfaf6"/>
+  <rect x="24" y="22" width="1432" height="816" rx="26" fill="#ffffff" stroke="#c9d8e2" stroke-width="2.5" filter="url(#frame-shadow)"/>
+  <text class="title" x="740" y="58" text-anchor="middle">Milestone 0.2.0 Learning Sequence</text>
+  <text class="subtitle" x="740" y="92" text-anchor="middle">The lane moves from deterministic collections into bounded fan-out and shutdown-aware worker control.</text>
+
+  <g id="learner">
+    <rect x="104" y="150" width="190" height="64" rx="12" fill="#d7ecf2" stroke="#48758d" stroke-width="2"/>
+    <text class="card-title" x="199" y="172" text-anchor="middle">Learner</text>
+    <text class="detail" x="199" y="202" text-anchor="middle">runs examples</text>
+  </g>
+  <line x1="199" y1="214" x2="199" y2="718" stroke="#9bb0bd" stroke-width="2" stroke-dasharray="6 8"/>
+  <g id="windowing">
+    <rect x="398" y="150" width="230" height="64" rx="12" fill="#dbe8d4" stroke="#5d8a62" stroke-width="2"/>
+    <text class="card-title" x="513" y="172" text-anchor="middle">Windowing</text>
+    <text class="detail" x="513" y="202" text-anchor="middle">group + chunk</text>
+  </g>
+  <line x1="513" y1="214" x2="513" y2="718" stroke="#9bb0bd" stroke-width="2" stroke-dasharray="6 8"/>
+  <g id="catalog">
+    <rect x="774" y="150" width="236" height="64" rx="12" fill="#f7e5aa" stroke="#b99b5d" stroke-width="2"/>
+    <text class="card-title" x="892" y="172" text-anchor="middle">Catalog Fan-out</text>
+    <text class="detail" x="892" y="202" text-anchor="middle">providers</text>
+  </g>
+  <line x1="892" y1="214" x2="892" y2="718" stroke="#9bb0bd" stroke-width="2" stroke-dasharray="6 8"/>
+  <g id="worker">
+    <rect x="1172" y="150" width="210" height="64" rx="12" fill="#eadcf5" stroke="#8a6bb0" stroke-width="2"/>
+    <text class="card-title" x="1277" y="172" text-anchor="middle">Worker Loop</text>
+    <text class="detail" x="1277" y="202" text-anchor="middle">shutdown signal</text>
+  </g>
+  <line x1="1277" y1="214" x2="1277" y2="718" stroke="#9bb0bd" stroke-width="2" stroke-dasharray="6 8"/>
+  <path class="line-main" d="M 199 270 L 513 270"/>
+  <text class="route-label" x="356" y="260" text-anchor="middle">1. page partner events</text>
+  <path class="line-success" d="M 513 330 L 199 330"/>
+  <text class="route-label" x="356" y="320" text-anchor="middle">deterministic Page</text>
+  <path class="line-amber" d="M 199 430 L 892 430"/>
+  <text class="route-label" x="545" y="420" text-anchor="middle">2. enrich with providers</text>
+  <path class="line-success" d="M 892 490 L 199 490"/>
+  <text class="route-label" x="545" y="480" text-anchor="middle">required error or warnings</text>
+  <path class="line-main" d="M 199 590 L 1277 590"/>
+  <text class="route-label" x="738" y="580" text-anchor="middle">3. run worker with signal</text>
+  <path class="line-success" d="M 1277 650 L 199 650"/>
+  <text class="route-label" x="738" y="640" text-anchor="middle">completed / timed out / cancelled</text>
+  <rect x="250" y="786" width="980" height="42" rx="11" fill="#edf1e9" stroke="#5d8a62"/>
+  <text class="footer" x="740" y="812" text-anchor="middle">Run the package tests individually, then finish with make ci for the full workshop contract.</text>
+</svg>

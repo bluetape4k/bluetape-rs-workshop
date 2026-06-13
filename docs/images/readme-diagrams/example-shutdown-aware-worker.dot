@@ -1,0 +1,18 @@
+digraph "example-shutdown-aware-worker" {
+  graph [rankdir=LR, bgcolor="#fbfaf6", margin=0.2, nodesep=0.75, ranksep=0.9];
+  node [shape=box, style="rounded,filled", fontname="Architects Daughter", fontsize=18, color="#48758d", fillcolor="#d7ecf2"];
+  edge [fontname="Comic Mono", fontsize=11, color="#47616f", fontcolor="#35505f", penwidth=2];
+  step0 [label="WorkerConfig\ncorrelation + timeout + items", fillcolor="#d7ecf2", color="#48758d"];
+  step1 [label="Validate\nbatch size + item keys", fillcolor="#edf1e9", color="#91a08c"];
+  step2 [label="group_by\nqueue", fillcolor="#dbe8d4", color="#5d8a62"];
+  step3 [label="chunks\nbounded batch size", fillcolor="#f7e5aa", color="#b99b5d"];
+  step4 [label="with_timeout\ntyped TimedOut", fillcolor="#f5d3df", color="#b95f7a"];
+  step5 [label="shutdown_signal\ntyped Cancelled", fillcolor="#eadcf5", color="#8a6bb0"];
+  step6 [label="WorkerReport\nstatus + processed", fillcolor="#dbe8d4", color="#5d8a62"];
+  step0 -> step1 [label="", color="#47616f", fontcolor="#47616f"];
+  step1 -> step2 [label="", color="#47616f", fontcolor="#47616f"];
+  step2 -> step3 [label="", color="#47616f", fontcolor="#47616f"];
+  step3 -> step4 [label="", color="#47616f", fontcolor="#47616f"];
+  step4 -> step5 [label="", color="#47616f", fontcolor="#47616f"];
+  step5 -> step6 [label="", color="#47616f", fontcolor="#47616f"];
+}

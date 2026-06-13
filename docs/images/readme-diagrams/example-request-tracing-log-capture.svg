@@ -1,11 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="980" height="980" viewBox="0 0 980 980" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="1080" viewBox="0 0 980 1080" role="img" aria-labelledby="title desc">
   <title id="title">request-tracing-log-capture Flow</title>
   <desc id="desc">A request boundary validates input and proves structured tracing output in a captured subscriber.</desc>
   <defs>
-    <marker id="arrow-main" viewBox="0 0 8 8" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M 1 1 L 7 4 L 1 7 Z" fill="#47616f"/></marker>
-    <marker id="arrow-success" viewBox="0 0 8 8" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M 1 1 L 7 4 L 1 7 Z" fill="#4f8b63"/></marker>
-    <marker id="arrow-error" viewBox="0 0 8 8" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M 1 1 L 7 4 L 1 7 Z" fill="#b95f7a"/></marker>
-    <marker id="arrow-amber" viewBox="0 0 8 8" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M 1 1 L 7 4 L 1 7 Z" fill="#a78335"/></marker>
+    <filter id="frame-shadow" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#b7c7d1" flood-opacity="0.22"/></filter>
+    <marker id="arrow-main" viewBox="0 0 5 5" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M 0.5 0.5 L 4.5 2.5 L 0.5 4.5 Z" fill="#47616f"/></marker>
+    <marker id="arrow-success" viewBox="0 0 5 5" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M 0.5 0.5 L 4.5 2.5 L 0.5 4.5 Z" fill="#4f8b63"/></marker>
+    <marker id="arrow-error" viewBox="0 0 5 5" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M 0.5 0.5 L 4.5 2.5 L 0.5 4.5 Z" fill="#b95f7a"/></marker>
+    <marker id="arrow-amber" viewBox="0 0 5 5" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M 0.5 0.5 L 4.5 2.5 L 0.5 4.5 Z" fill="#a78335"/></marker>
     <style>
       @font-face { font-family: 'Architects Daughter'; src: url('file:///Users/debop/Library/Fonts/ArchitectsDaughter-Regular.ttf') format('truetype'); }
       @font-face { font-family: 'Comic Mono'; src: url('file:///Users/debop/Library/Fonts/ComicMono.ttf') format('truetype'); }
@@ -25,7 +26,8 @@
       .line-amber { fill: none; stroke: #a78335; stroke-width: 3; marker-end: url(#arrow-amber); }
     </style>
   </defs>
-  <rect width="980" height="980" fill="#fbfaf6"/>
+  <rect width="980" height="1080" fill="#fbfaf6"/>
+  <rect x="24" y="22" width="932" height="1036" rx="26" fill="#ffffff" stroke="#c9d8e2" stroke-width="2.5" filter="url(#frame-shadow)"/>
   <text class="title" x="490" y="58" text-anchor="middle">request-tracing-log-capture Flow</text>
   <text class="subtitle" x="490" y="92" text-anchor="middle">A request boundary validates input and proves structured tracing output in a captured subscriber.</text>
 
@@ -58,6 +60,6 @@
   <path class="line-main" d="M 490 360 L 490 394"/>
   <path class="line-main" d="M 490 472 L 490 506"/>
   <path class="line-main" d="M 490 584 L 490 618"/>
-  <rect x="20" y="910" width="940" height="38" rx="11" fill="#edf1e9" stroke="#5d8a62"/>
-  <text class="footer" x="490" y="935" text-anchor="middle">Use this when a workshop step needs observable request context.</text>
+  <rect x="20" y="1010" width="940" height="38" rx="11" fill="#edf1e9" stroke="#5d8a62"/>
+  <text class="footer" x="490" y="1035" text-anchor="middle">Use this when a workshop step needs observable request context.</text>
 </svg>

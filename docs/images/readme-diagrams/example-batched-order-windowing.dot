@@ -1,0 +1,16 @@
+digraph "example-batched-order-windowing" {
+  graph [rankdir=LR, bgcolor="#fbfaf6", margin=0.2, nodesep=0.75, ranksep=0.9];
+  node [shape=box, style="rounded,filled", fontname="Architects Daughter", fontsize=18, color="#48758d", fillcolor="#d7ecf2"];
+  edge [fontname="Comic Mono", fontsize=11, color="#47616f", fontcolor="#35505f", penwidth=2];
+  step0 [label="BatchRun\ncorrelation + page + events", fillcolor="#d7ecf2", color="#48758d"];
+  step1 [label="Validate\nrequired text + positive qty", fillcolor="#edf1e9", color="#91a08c"];
+  step2 [label="group_by\ntenant + channel", fillcolor="#dbe8d4", color="#5d8a62"];
+  step3 [label="sort\nstable output order", fillcolor="#f7e5aa", color="#b99b5d"];
+  step4 [label="chunks\npage-size batches", fillcolor="#eadcf5", color="#8a6bb0"];
+  step5 [label="Page\nitems + total_items", fillcolor="#dbe8d4", color="#5d8a62"];
+  step0 -> step1 [label="", color="#47616f", fontcolor="#47616f"];
+  step1 -> step2 [label="", color="#47616f", fontcolor="#47616f"];
+  step2 -> step3 [label="", color="#47616f", fontcolor="#47616f"];
+  step3 -> step4 [label="", color="#47616f", fontcolor="#47616f"];
+  step4 -> step5 [label="", color="#47616f", fontcolor="#47616f"];
+}

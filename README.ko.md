@@ -1,7 +1,6 @@
 # bluetape-rs-workshop
 
-- [English](README.md)
-- [Korean](README.ko.md)
+[English](README.md) | [한국어](README.ko.md)
 
 [`bluetape-rs`](https://github.com/bluetape4k/bluetape-rs)를 사용하는 실행
 가능한 Rust 백엔드 예제 저장소입니다.
@@ -11,9 +10,9 @@
 
 ## Milestone 0.1.0: Foundation Examples
 
-0.1.0 마일스톤은 워크숍의 첫 기반 기능을 작은 실행 예제로 제공합니다. 각
-예제는 독립적으로 읽을 수 있지만, 파트너 주문을 받아 요청 문맥을 보존하고
-파일 시스템 부작용을 테스트에서 격리한다는 하나의 시나리오를 공유합니다.
+0.1.0은 워크숍의 바닥을 깔아 둔 구간입니다. 예제는 각각 작게 읽히지만,
+파트너 주문을 받아 요청 문맥을 보존하고 파일 시스템 부작용을 테스트에서
+격리한다는 흐름을 공유합니다.
 
 | Example | Focus | Run |
 |---|---|---|
@@ -23,9 +22,11 @@
 
 ## Milestone 0.2.0: Collections and Async Examples
 
-0.2.0 마일스톤은 `bluetape-rs-collections`와 `bluetape-rs-async` 예제를
-추가합니다. 0.1.0의 검증/로깅 기반을 유지하면서 결정적 그룹화, bounded
-fan-out, timeout, shutdown-aware worker 동작을 다룹니다.
+0.2.0은 `bluetape-rs-collections`와 `bluetape-rs-async`를 본격적으로
+다룹니다. 0.1.0에서 만든 검증/로깅 기반은 그대로 두고, 결정적 그룹화,
+bounded fan-out, timeout, shutdown-aware worker 흐름을 예제로 보여줍니다.
+
+![Milestone 0.2.0 architecture](docs/images/readme-diagrams/workshop-collections-async-architecture.png)
 
 | Example | Focus | Run |
 |---|---|---|
@@ -33,7 +34,9 @@ fan-out, timeout, shutdown-aware worker 동작을 다룹니다.
 | [`catalog-enrichment-fanout`](examples/catalog-enrichment-fanout/README.ko.md) | bounded provider fan-out, 필수 실패, 선택 warning, timeout 제어 | `cargo test -p catalog-enrichment-fanout` |
 | [`shutdown-aware-worker`](examples/shutdown-aware-worker/README.ko.md) | timeout과 shutdown cancellation을 가진 worker loop | `cargo test -p shutdown-aware-worker` |
 
-## Learning Path
+![Milestone 0.2.0 sequence](docs/images/readme-diagrams/workshop-collections-async-sequence.png)
+
+## 학습 순서
 
 1. `foundation-order-cleanup`에서 검증 헬퍼로 원천 파트너 입력을 타입이 있는
    도메인 출력으로 바꾸는 흐름을 봅니다.
@@ -42,16 +45,17 @@ fan-out, timeout, shutdown-aware worker 동작을 다룹니다.
 3. `temp-resource-test-harness`에서 파일을 만드는 테스트를 임시 작업공간과
    결정적 정리로 격리하는 방식을 봅니다.
 4. `batched-order-windowing`에서 결정적 그룹화, chunking, paging을 적용합니다.
-5. `catalog-enrichment-fanout`에서 required/optional 실패 계약을 가진 bounded
-   async provider 작업을 봅니다.
-6. `shutdown-aware-worker`에서 timeout과 shutdown cancellation 상태를 봅니다.
+5. `catalog-enrichment-fanout`에서 필수 provider 실패와 선택 provider warning을
+   나누는 bounded async 작업을 봅니다.
+6. `shutdown-aware-worker`에서 worker가 정상 완료, timeout, shutdown을 어떻게
+   구분해 돌려주는지 봅니다.
 
 ## Architecture
 
 ![Milestone 0.1.0 architecture](docs/images/readme-diagrams/workshop-foundation-architecture.png)
 
-0.1.0에서는 각 기반 예제를 독립 crate로 유지합니다. 이후 마일스톤에서는 이
-예제들을 더 통합적인 서비스 스타일 흐름으로 재사용합니다.
+0.1.0에서는 각 기반 예제를 독립 crate로 유지합니다. 이후 마일스톤은 이
+예제들을 더 큰 서비스 흐름으로 조합합니다.
 
 ## Sequence
 
@@ -61,7 +65,11 @@ fan-out, timeout, shutdown-aware worker 동작을 다룹니다.
 `bluetape-rs-logging`으로 요청 로그를 캡처하며, `bluetape-rs-test`로 테스트
 아티팩트 파일을 안전하게 다룹니다.
 
-## Repository Layout
+0.2.0 워크스루는 그 위에 collection transform, bounded provider fan-out,
+worker lifecycle 제어를 얹습니다. 예제가 갑자기 프레임워크가 되지 않도록,
+각 crate는 여전히 한 가지 학습 목표만 맡습니다.
+
+## 저장소 구조
 
 ```text
 examples/
@@ -74,7 +82,7 @@ examples/
 docs/images/readme-diagrams/      # README diagram sources and rendered PNGs
 ```
 
-## Verify
+## 검증
 
 ```bash
 make ci

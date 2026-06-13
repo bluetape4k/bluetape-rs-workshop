@@ -1,5 +1,7 @@
 # batched-order-windowing
 
+[English](README.md) | [한국어](README.ko.md)
+
 This example groups partner order events by tenant and channel, chunks each
 group into deterministic batches, and returns a materialized `Page`.
 
@@ -8,6 +10,8 @@ group into deterministic batches, and returns a materialized `Page`.
 Partner events arrive as flat rows. The example validates required fields,
 preserves a correlation ID for logs, sorts grouped output after `HashMap`
 grouping, and pages the resulting batches.
+
+![batched-order-windowing flow](../../docs/images/readme-diagrams/example-batched-order-windowing.png)
 
 ## Representative Code
 

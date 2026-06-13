@@ -1,5 +1,7 @@
 # catalog-enrichment-fanout
 
+[English](README.md) | [한국어](README.ko.md)
+
 This example enriches catalog rows through bounded async provider fan-out.
 Required provider failures fail the request; optional provider failures are
 returned as warnings on each product.
@@ -10,6 +12,8 @@ A catalog page needs inventory and recommendation data. The example validates
 request metadata, groups rows before deterministic paging, runs provider work
 with `map_bounded_collect`, and wraps the fan-out in an explicit timeout and
 cancellation boundary.
+
+![catalog-enrichment-fanout flow](../../docs/images/readme-diagrams/example-catalog-enrichment-fanout.png)
 
 ## Representative Code
 

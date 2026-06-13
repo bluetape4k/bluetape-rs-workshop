@@ -1,5 +1,7 @@
 # shutdown-aware-worker
 
+[English](README.md) | [한국어](README.ko.md)
+
 This example runs grouped worker items until work completes, a timeout fires, or
 a shutdown signal is requested.
 
@@ -8,6 +10,8 @@ a shutdown signal is requested.
 A worker receives queue items with different simulated costs. The example
 validates the run configuration, groups work by queue, chunks each queue, and
 checks the shutdown signal between async sleep-based work units.
+
+![shutdown-aware-worker flow](../../docs/images/readme-diagrams/example-shutdown-aware-worker.png)
 
 ## Representative Code
 

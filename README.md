@@ -1,15 +1,12 @@
 # bluetape-rs-workshop
 
+[English](README.md) | [한국어](README.ko.md)
+
 Runnable Rust backend examples for
 [`bluetape-rs`](https://github.com/bluetape4k/bluetape-rs).
 
 This repository uses `main` as the only long-lived branch. Feature work should
 open pull requests against `main`.
-
-## Languages
-
-- [English](README.md)
-- [Korean](README.ko.md)
 
 ## Milestone 0.1.0: Foundation Examples
 
@@ -31,11 +28,15 @@ Milestone 0.2.0 adds examples for `bluetape-rs-collections` and
 baseline, then add deterministic grouping, bounded fan-out, timeouts, and
 shutdown-aware worker behavior.
 
+![Milestone 0.2.0 architecture](docs/images/readme-diagrams/workshop-collections-async-architecture.png)
+
 | Example | Focus | Run |
 |---|---|---|
 | [`batched-order-windowing`](examples/batched-order-windowing/README.md) | Group partner order events, chunk them into deterministic batches, and page the result | `cargo test -p batched-order-windowing` |
 | [`catalog-enrichment-fanout`](examples/catalog-enrichment-fanout/README.md) | Enrich catalog rows with bounded provider fan-out, required failures, optional warnings, and timeout control | `cargo test -p catalog-enrichment-fanout` |
 | [`shutdown-aware-worker`](examples/shutdown-aware-worker/README.md) | Process grouped worker items with timeout and shutdown cancellation behavior | `cargo test -p shutdown-aware-worker` |
+
+![Milestone 0.2.0 sequence](docs/images/readme-diagrams/workshop-collections-async-sequence.png)
 
 ## Learning Path
 
@@ -67,6 +68,9 @@ these crates as a larger service-style flow.
 The 0.1.0 walkthrough starts with raw partner input, validates it with
 `bluetape-rs-core`, captures request logs with `bluetape-rs-logging`, and writes
 test artifacts through `bluetape-rs-test`.
+
+The 0.2.0 walkthrough then adds deterministic collection transforms, bounded
+provider fan-out, and worker lifecycle control.
 
 ## Repository Layout
 

@@ -1,0 +1,12 @@
+graph 1 7.559 4.9764
+node learner 0.92361 2.5667 1.8472 0.81944 "Learner\nruns examples" rounded,filled box #48758d #d7ecf2
+node windowing 6.5365 4.5667 1.9201 0.81944 "Windowing\ngroup + chunk" rounded,filled box #5d8a62 #dbe8d4
+node catalog 6.5365 2.275 2.0451 0.81944 "Catalog Fan-out\nproviders" rounded,filled box #b99b5d #f7e5aa
+node worker 6.5365 0.49726 1.9826 0.81944 "Worker Loop\nshutdown signal" rounded,filled box #8a6bb0 #eadcf5
+edge learner windowing 7 1.1421 2.9808 1.3666 3.3853 1.7678 3.9799 2.3056 4.2611 3.2594 4.7601 4.5042 4.7877 5.3937 4.7202 "1. page partner events" 3.6806 4.8357 solid #47616f
+edge learner catalog 4 1.8535 2.5189 2.8043 2.4692 4.2952 2.3914 5.3357 2.337 "2. enrich with providers" 3.6806 2.577 solid #a78335
+edge learner worker 7 1.4018 2.1524 1.6538 1.9468 1.9798 1.7101 2.3056 1.5563 3.2858 1.0935 4.4933 0.81666 5.3646 0.66279 "3. run worker with signal" 3.6806 1.6448 solid #47616f
+edge windowing learner 7 5.5722 4.2164 5.4003 4.1535 5.2227 4.0888 5.0556 4.0285 4.0258 3.6569 2.8484 3.2397 2.0171 2.9464 "deterministic Page" 3.6806 4.117 solid #4f8b63
+edge catalog learner 7 5.5082 2.0778 4.6484 1.9434 3.3864 1.8236 2.3056 2.0285 2.2115 2.0463 2.1157 2.0705 2.0206 2.0987 "required error or warnings" 3.6806 2.117 solid #4f8b63
+edge worker learner 7 5.5393 0.19938 4.6392 -0.013617 3.3 -0.17571 2.3056 0.37573 1.6925 0.7157 1.318 1.4575 1.1193 1.9836 "completed / timed out / cancelled" 3.6806 0.46427 solid #4f8b63
+stop
