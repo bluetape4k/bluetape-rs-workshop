@@ -12,6 +12,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "base64"
+version = "0.22.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "72b3254f16251a8381aa12e40e3c4d2f0199f8c6508fbecb9d91f575e0fbb8c6"
+
+[[package]]
 name = "batched-order-windowing"
 version = "0.1.0"
 dependencies = [
@@ -29,6 +35,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "54bd2f558366e4f631133ec604b409d392c3cc58f77128c97b555e71fbb8c18b"
 dependencies = [
  "tokio",
+]
+
+[[package]]
+name = "bluetape-rs-codec"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a46c88ad79fb4cc59260ed3f0b2406bf1767797c1c66bede74dc8f365501553a"
+dependencies = [
+ "base64",
 ]
 
 [[package]]
@@ -89,6 +104,15 @@ dependencies = [
  "bluetape-rs-logging",
  "thiserror",
  "tracing",
+]
+
+[[package]]
+name = "invitation-codecs"
+version = "0.1.0"
+dependencies = [
+ "bluetape-rs-codec",
+ "bluetape-rs-core",
+ "thiserror",
 ]
 
 [[package]]
