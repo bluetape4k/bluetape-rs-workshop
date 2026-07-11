@@ -8,7 +8,7 @@ Runnable Rust backend examples for `bluetape-rs`.
 
 ## Skills
 
-- Use `bluetape4k-workflow` for task classification and issue/PR discipline.
+- Use `bluetape-workflow` for task classification and issue/PR discipline.
 - Use `bluetape-rs-patterns` for Rust implementation, tests, async work, Cargo
   metadata, and review.
 
