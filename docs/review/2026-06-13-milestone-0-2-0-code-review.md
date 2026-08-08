@@ -1,25 +1,25 @@
-# Milestone 0.2.0 Code Review
+# Milestone 0.2.0 코드 검토
 
-Date: 2026-06-13
-Branch: `feat/milestone-0.2.0-examples`
-Reviewed range: `main...HEAD`
-Baseline local `main`: `94c01ae`
-Implementation commit: `59fc382`
+날짜: 2026-06-13
+브랜치: `feat/milestone-0.2.0-examples`
+검토 범위: `main...HEAD`
+기준 로컬 `main`: `94c01ae`
+구현 커밋: `59fc382`
 
-## Scope
+## 범위
 
-Reviewed the three new milestone 0.2.0 example crates:
+새 0.2.0 마일스톤 예제 crate 세 개를 검토했다.
 
 - `examples/batched-order-windowing`
 - `examples/catalog-enrichment-fanout`
 - `examples/shutdown-aware-worker`
 
-Also reviewed root workspace registration, bilingual README updates, `WIP.md`,
-and the generated `Cargo.lock` update.
+루트 workspace 등록, 이중 언어 README 업데이트, `WIP.md`, 생성된
+`Cargo.lock` 업데이트도 검토했다.
 
-## Evidence
+## 증거
 
-Validation commands:
+검증 명령:
 
 - `cargo test -p batched-order-windowing`: PASS, 4 tests
 - `cargo test -p catalog-enrichment-fanout`: PASS, 5 tests
@@ -30,32 +30,32 @@ Validation commands:
 - `make ci`: PASS
 - `git diff --check`: PASS
 
-Structural checks:
+구조 검사:
 
-- `examples/batched-order-windowing/src/lib.rs:1` through `:12` is short
-  Rustdoc, module declarations, and re-exports only.
-- `examples/catalog-enrichment-fanout/src/lib.rs:1` through `:12` is short
-  Rustdoc, module declarations, and re-exports only.
-- `examples/shutdown-aware-worker/src/lib.rs:1` through `:12` is short
-  Rustdoc, module declarations, and re-exports only.
-- Production-path scan found no `todo!`, `unimplemented!`, `panic!`, `unwrap(`,
-  or `expect(` under the three new example source trees; `expect` appears only
-  in tests.
+- `examples/batched-order-windowing/src/lib.rs:1`부터 `:12`까지는 짧은
+  Rustdoc, 모듈 선언, re-export만 포함한다.
+- `examples/catalog-enrichment-fanout/src/lib.rs:1`부터 `:12`까지는 짧은
+  Rustdoc, 모듈 선언, re-export만 포함한다.
+- `examples/shutdown-aware-worker/src/lib.rs:1`부터 `:12`까지는 짧은
+  Rustdoc, 모듈 선언, re-export만 포함한다.
+- 세 새 예제 소스 트리의 production 경로를 검사한 결과 `todo!`,
+  `unimplemented!`, `panic!`, `unwrap(`, `expect(`가 없었다. `expect`는
+  테스트에만 나타난다.
 
-## Findings
+## 발견 사항
 
-P0: none.
+P0: 없음.
 
-P1: none.
+P1: 없음.
 
-P2: none.
+P2: 없음.
 
-P3: none.
+P3: 없음.
 
-## Gate Verdict
+## 게이트 판정
 
 PASS.
 
 P0=0 P1=0
 
-The implementation can proceed to lessons, PR creation, and CI verification.
+구현은 lessons, PR 생성, CI 검증 단계로 진행할 수 있다.
