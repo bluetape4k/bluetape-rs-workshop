@@ -1,12 +1,12 @@
-# README Diagram Review
+# README 다이어그램 검토
 
-Date: 2026-06-13
-Branch: `feat/milestone-0.2.0-examples`
-Scope: root README files and milestone 0.2.0 example README files.
+날짜: 2026-06-13
+브랜치: `feat/milestone-0.2.0-examples`
+범위: 루트 README 파일과 0.2.0 마일스톤 예제 README 파일.
 
-## Scope
+## 범위
 
-Added or refreshed README diagram assets for:
+다음 README 다이어그램 자산을 추가하거나 갱신했다.
 
 - `workshop-collections-async-architecture`
 - `workshop-collections-async-sequence`
@@ -14,54 +14,53 @@ Added or refreshed README diagram assets for:
 - `example-catalog-enrichment-fanout`
 - `example-shutdown-aware-worker`
 
-The existing 0.1.0 assets were regenerated through the same script after the
-generator frame and arrow marker rules were tightened.
+generator frame과 화살표 marker 규칙을 강화한 뒤 동일한 스크립트로 기존
+0.1.0 자산도 재생성했다.
 
-## Evidence
+## 증거
 
-- GNO guidance checked before editing:
-  - `bluetape4k-docs`: README diagram Graphviz evidence and batch lessons.
-  - `bluetape4k-github`: README diagram PR/issue guidance for geometry gates.
-- Generator reused: `scripts/generate-foundation-diagrams.py`.
-- Generated evidence per diagram: `.dot`, `.plain`, `*-graphviz.svg`,
-  `*-graphviz.png`, final `.svg`, final `.png`.
-- Geometry summary persisted:
+- 편집 전에 GNO guidance를 확인했다.
+  - `bluetape4k-docs`: README 다이어그램 Graphviz 증거와 batch 교훈.
+  - `bluetape4k-github`: geometry 게이트에 대한 README 다이어그램 PR/이슈 guidance.
+- 재사용한 generator: `scripts/generate-foundation-diagrams.py`.
+- 다이어그램별 생성 증거: `.dot`, `.plain`, `*-graphviz.svg`,
+  `*-graphviz.png`, 최종 `.svg`, 최종 `.png`.
+- geometry 요약을 다음 경로에 보존했다.
   `docs/images/readme-diagrams/geometry-summary.txt`.
-- Rendered PNGs inspected individually:
+- 렌더링된 PNG를 다음과 같이 개별 검사했다.
   - `workshop-collections-async-architecture.png`
   - `workshop-collections-async-sequence.png`
   - `example-batched-order-windowing.png`
   - `example-catalog-enrichment-fanout.png`
   - `example-shutdown-aware-worker.png`
-- Visual fixes applied before review closure:
-  - Removed a diagonal architecture connector.
-  - Removed a crossing long connector that was already explained by grouping
-    and node labels.
-  - Increased flow canvas height so footer boxes do not cover final cards.
+- 검토를 마치기 전에 시각적 수정 사항을 적용했다.
+  - 대각선 architecture connector를 제거했다.
+  - grouping과 node label로 이미 설명되는 교차 장거리 connector를 제거했다.
+  - footer box가 최종 카드를 가리지 않도록 흐름 캔버스 높이를 늘렸다.
 
-## Validation
+## 검증
 
 - `python3 scripts/generate-foundation-diagrams.py`: PASS.
-- SVG XML parse for all `docs/images/readme-diagrams/*.svg`: PASS.
-- SVG/PNG pair scan: PASS.
-- README SVG embed scan: PASS, no local SVG embeds.
-- Forbidden UI font and stale marker scan: PASS, no `Inter`, `Arial`,
-  `Helvetica`, `8x8`, or `13x13` marker usage in final SVG files.
-- README image link scan: PASS, `missing=0`.
+- 모든 `docs/images/readme-diagrams/*.svg`에 대한 SVG XML parse: PASS.
+- SVG/PNG 쌍 검사: PASS.
+- README SVG 삽입 검사: PASS, 로컬 SVG 삽입 없음.
+- 금지된 UI font 및 stale marker 검사: PASS, 최종 SVG 파일에 `Inter`, `Arial`,
+  `Helvetica`, `8x8`, `13x13` marker 사용 없음.
+- README 이미지 링크 검사: PASS, `missing=0`.
 - `git diff --check`: PASS.
 - `cargo fmt --all --check`: PASS.
 
-## Findings
+## 발견 사항
 
-P0: none.
+P0: 없음.
 
-P1: none.
+P1: 없음.
 
-P2: none.
+P2: 없음.
 
-P3: none.
+P3: 없음.
 
-## Gate Verdict
+## 게이트 판정
 
 PASS.
 

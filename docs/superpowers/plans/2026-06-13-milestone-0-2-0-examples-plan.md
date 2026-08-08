@@ -1,41 +1,44 @@
-# Milestone 0.2.0 Examples Implementation Plan
+# Milestone 0.2.0 예제 구현 계획
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build the `0.2.0` workshop lane with three runnable Rust example crates for collections, bounded async fan-out, and shutdown-aware workers.
+**목표:** collections, 제한된 async fan-out, shutdown-aware worker를 위한 실행 가능한 Rust 예제 crate 세 개로 `0.2.0` workshop 경로를 구축한다.
 
-**Architecture:** Keep one crate per example. Each crate exposes only short Rustdoc and
-public re-exports in `src/lib.rs`; domain types, typed errors, workflow logic,
-and tests live in focused modules. Each crate validates caller input with
-`bluetape-rs-core`, uses typed errors with `thiserror`, and keeps detailed
-learning prose in bilingual README files. Root docs describe the milestone lane
-and link the examples.
+**아키텍처:** 예제마다 crate 하나를 유지한다. 각 crate는 `src/lib.rs`에서
+짧은 Rustdoc과 public re-export만 노출하고, domain type, 타입이 지정된
+오류, workflow 로직, 테스트는 목적별 모듈에 둔다. 각 crate는
+`bluetape-rs-core`로 caller 입력을 검증하고 `thiserror`로 타입이 지정된
+오류를 사용하며, 자세한 학습 설명은 이중 언어 README 파일에 둔다. 루트
+문서는 마일스톤 경로를 설명하고 예제에 링크한다.
 
-**Tech Stack:** Rust 2024, `bluetape-rs-core 0.3.1`, `bluetape-rs-logging 0.3.1`, `bluetape-rs-collections 0.3.1`, `bluetape-rs-async 0.3.1`, `tokio`, `thiserror`, `tracing`.
+**기술 스택:** Rust 2024, `bluetape-rs-core 0.3.1`, `bluetape-rs-logging 0.3.1`, `bluetape-rs-collections 0.3.1`, `bluetape-rs-async 0.3.1`, `tokio`, `thiserror`, `tracing`.
 
 ---
 
-## File Structure
+## 파일 구조
 
-- Modify `Cargo.toml`: add three workspace members and workspace dependencies for `bluetape-rs-collections` and `bluetape-rs-async`; add missing Tokio features `rt-multi-thread` and `sync` if async tests require them.
-- Modify `README.md` and `README.ko.md`: add milestone `0.2.0` examples, learning path, architecture/sequence prose, and layout entries.
-- Modify `WIP.md`: add `0.2.0 Delivery Scope`.
-- Create `examples/batched-order-windowing/{Cargo.toml,README.md,README.ko.md,src/{lib.rs,domain.rs,error.rs,windowing.rs,tests.rs}}`.
-- Create `examples/catalog-enrichment-fanout/{Cargo.toml,README.md,README.ko.md,src/{lib.rs,domain.rs,error.rs,enrichment.rs,tests.rs}}`.
-- Create `examples/shutdown-aware-worker/{Cargo.toml,README.md,README.ko.md,src/{lib.rs,domain.rs,error.rs,worker.rs,tests.rs}}`.
-- Create `docs/lessons/2026-06-13-milestone-0-2-0-examples.md`.
-- Create `docs/review/2026-06-13-milestone-0-2-0-code-review.md`.
+- `Cargo.toml` 수정: workspace member 세 개와 `bluetape-rs-collections`,
+  `bluetape-rs-async`용 workspace dependency를 추가한다. async 테스트에
+  필요하면 누락된 Tokio feature `rt-multi-thread`, `sync`도 추가한다.
+- `README.md`, `README.ko.md` 수정: `0.2.0` 마일스톤 예제, 학습 경로,
+  아키텍처/sequence 설명, 레이아웃 항목을 추가한다.
+- `WIP.md` 수정: `0.2.0 Delivery Scope`를 추가한다.
+- `examples/batched-order-windowing/{Cargo.toml,README.md,README.ko.md,src/{lib.rs,domain.rs,error.rs,windowing.rs,tests.rs}}` 생성.
+- `examples/catalog-enrichment-fanout/{Cargo.toml,README.md,README.ko.md,src/{lib.rs,domain.rs,error.rs,enrichment.rs,tests.rs}}` 생성.
+- `examples/shutdown-aware-worker/{Cargo.toml,README.md,README.ko.md,src/{lib.rs,domain.rs,error.rs,worker.rs,tests.rs}}` 생성.
+- `docs/lessons/2026-06-13-milestone-0-2-0-examples.md` 생성.
+- `docs/review/2026-06-13-milestone-0-2-0-code-review.md` 생성.
 
-## Task 1: Workspace Registration
+## Task 1: Workspace 등록
 
 complexity: low
 
-**Files:**
-- Modify: `Cargo.toml`
+**파일:**
+- 수정: `Cargo.toml`
 
-- [ ] **Step 1: Add workspace members and dependencies**
+- [ ] **Step 1: workspace member와 dependency 추가**
 
-Add these workspace members:
+다음 workspace member를 추가한다.
 
 ```toml
     "examples/batched-order-windowing",
@@ -43,51 +46,54 @@ Add these workspace members:
     "examples/shutdown-aware-worker",
 ```
 
-Add these workspace dependencies:
+다음 workspace dependency를 추가한다.
 
 ```toml
 bluetape-rs-async = "0.3.1"
 bluetape-rs-collections = "0.3.1"
 ```
 
-If compilation requires it, change Tokio features to:
+컴파일에 필요하면 Tokio feature를 다음과 같이 변경한다.
 
 ```toml
 tokio = { version = "1.48.0", default-features = false, features = ["macros", "rt", "rt-multi-thread", "sync", "time", "test-util"] }
 ```
 
-- [ ] **Step 2: Verify existing examples still resolve**
+- [ ] **Step 2: 기존 예제가 계속 resolve되는지 검증**
 
-Run:
+실행:
 
 ```bash
 cargo metadata --no-deps --format-version 1
 ```
 
-Expected: all six package names appear after Task 2-4 crates exist; before that, run after crate skeletons are added.
+예상: Task 2-4 crate가 생성된 뒤 여섯 package name이 모두 나타난다. 그
+전에는 crate skeleton을 추가한 뒤 실행한다.
 
 ## Task 2: `batched-order-windowing`
 
 complexity: medium
 
-Apply `$bluetape-rs-patterns`: Rust-native typed errors, deterministic ordering after `HashMap` grouping, no panics on caller input, English Rustdoc for public API.
+`$bluetape-rs-patterns`를 적용한다. Rust-native 타입 오류, `HashMap`
+그룹화 후 결정적인 순서, caller 입력에 대한 패닉 없음, public API의 영어
+Rustdoc을 사용한다.
 
-**Files:**
-- Create: `examples/batched-order-windowing/Cargo.toml`
-- Create: `examples/batched-order-windowing/README.md`
-- Create: `examples/batched-order-windowing/README.ko.md`
-- Create: `examples/batched-order-windowing/src/lib.rs`
-- Create: `examples/batched-order-windowing/src/domain.rs`
-- Create: `examples/batched-order-windowing/src/error.rs`
-- Create: `examples/batched-order-windowing/src/windowing.rs`
-- Create: `examples/batched-order-windowing/src/tests.rs`
+**파일:**
+- 생성: `examples/batched-order-windowing/Cargo.toml`
+- 생성: `examples/batched-order-windowing/README.md`
+- 생성: `examples/batched-order-windowing/README.ko.md`
+- 생성: `examples/batched-order-windowing/src/lib.rs`
+- 생성: `examples/batched-order-windowing/src/domain.rs`
+- 생성: `examples/batched-order-windowing/src/error.rs`
+- 생성: `examples/batched-order-windowing/src/windowing.rs`
+- 생성: `examples/batched-order-windowing/src/tests.rs`
 
-- [ ] **Step 1: Write tests first**
+- [ ] **Step 1: 테스트를 먼저 작성**
 
-Create `src/lib.rs` with short crate Rustdoc and public exports only. Put public
-types in `domain.rs`, public errors in `error.rs`, workflow logic in
-`windowing.rs`, and tests in `tests.rs`. The first test must fail because
-implementation is not present yet:
+짧은 crate Rustdoc과 public export만 포함하는 `src/lib.rs`를 생성한다.
+public type은 `domain.rs`, public error는 `error.rs`, workflow 로직은
+`windowing.rs`, 테스트는 `tests.rs`에 둔다. 아직 구현이 없으므로 첫 번째
+테스트는 실패해야 한다.
 
 ```rust
 #[test]
@@ -113,21 +119,21 @@ fn groups_chunks_and_pages_partner_events() {
 }
 ```
 
-Also add tests for empty input, invalid page size, and blank tenant.
+빈 입력, 잘못된 page size, 빈 tenant에 대한 테스트도 추가한다.
 
-- [ ] **Step 2: Run RED test**
+- [ ] **Step 2: RED 테스트 실행**
 
-Run:
+실행:
 
 ```bash
 cargo test -p batched-order-windowing
 ```
 
-Expected: fails because the crate or implementation is incomplete.
+예상: crate 또는 구현이 불완전하므로 실패한다.
 
-- [ ] **Step 3: Implement minimal behavior**
+- [ ] **Step 3: 최소 동작 구현**
 
-Use:
+사용:
 
 - `require_not_blank`
 - `require_positive`
@@ -137,21 +143,21 @@ Use:
 - `bluetape_rs_collections::Page`
 - `tracing::info!`
 
-Implementation must sort grouped batches by `(tenant, channel)` before paging.
+구현은 페이징 전에 그룹화된 batch를 `(tenant, channel)`로 정렬해야 한다.
 
-- [ ] **Step 4: Run GREEN test**
+- [ ] **Step 4: GREEN 테스트 실행**
 
-Run:
+실행:
 
 ```bash
 cargo test -p batched-order-windowing
 ```
 
-Expected: all `batched-order-windowing` tests pass.
+예상: 모든 `batched-order-windowing` 테스트가 통과한다.
 
-- [ ] **Step 5: Add bilingual README**
+- [ ] **Step 5: 이중 언어 README 추가**
 
-README files must include scenario, representative code, things to notice, and:
+README 파일에는 시나리오, 대표 코드, 주의할 점과 다음 명령을 포함해야 한다.
 
 ```bash
 cargo test -p batched-order-windowing
@@ -161,68 +167,71 @@ cargo test -p batched-order-windowing
 
 complexity: high
 
-Apply `$bluetape-rs-patterns`: bounded Tokio tasks, typed provider failures, cancellation/timeout evidence, no hidden required-provider failures.
+`$bluetape-rs-patterns`를 적용한다. 제한된 Tokio task, 타입이 지정된
+provider 실패, 취소/timeout 증거를 사용하며 필수 provider 실패를 숨기지
+않는다.
 
-**Files:**
-- Create: `examples/catalog-enrichment-fanout/Cargo.toml`
-- Create: `examples/catalog-enrichment-fanout/README.md`
-- Create: `examples/catalog-enrichment-fanout/README.ko.md`
-- Create: `examples/catalog-enrichment-fanout/src/lib.rs`
-- Create: `examples/catalog-enrichment-fanout/src/domain.rs`
-- Create: `examples/catalog-enrichment-fanout/src/error.rs`
-- Create: `examples/catalog-enrichment-fanout/src/enrichment.rs`
-- Create: `examples/catalog-enrichment-fanout/src/tests.rs`
+**파일:**
+- 생성: `examples/catalog-enrichment-fanout/Cargo.toml`
+- 생성: `examples/catalog-enrichment-fanout/README.md`
+- 생성: `examples/catalog-enrichment-fanout/README.ko.md`
+- 생성: `examples/catalog-enrichment-fanout/src/lib.rs`
+- 생성: `examples/catalog-enrichment-fanout/src/domain.rs`
+- 생성: `examples/catalog-enrichment-fanout/src/error.rs`
+- 생성: `examples/catalog-enrichment-fanout/src/enrichment.rs`
+- 생성: `examples/catalog-enrichment-fanout/src/tests.rs`
 
-- [ ] **Step 1: Write tests first**
+- [ ] **Step 1: 테스트를 먼저 작성**
 
-Tests must cover:
+테스트는 다음을 다뤄야 한다.
 
-- success with grouped, paged, enriched output
-- blank request metadata
-- required provider failure
-- optional provider failure recorded as warning
-- timeout or cancellation
+- 그룹화·페이징·보강된 출력의 성공
+- 비어 있는 요청 메타데이터
+- 필수 provider 실패
+- 경고로 기록되는 선택 provider 실패
+- timeout 또는 취소
 
-Use short deterministic sleeps for timeout coverage. Avoid paused-time tests unless the
-workspace Tokio features make them necessary.
-Keep `lib.rs` to crate Rustdoc, module declarations, and re-exports.
+timeout 범위를 검증할 때는 짧고 결정적인 sleep을 사용한다. workspace Tokio
+feature가 필요하게 만드는 경우가 아니라면 paused-time 테스트는 피한다.
+`lib.rs`에는 crate Rustdoc, 모듈 선언, re-export만 둔다.
 
-- [ ] **Step 2: Run RED test**
+- [ ] **Step 2: RED 테스트 실행**
 
-Run:
+실행:
 
 ```bash
 cargo test -p catalog-enrichment-fanout
 ```
 
-Expected: fails before implementation is complete.
+예상: 구현이 완료되기 전에는 실패한다.
 
-- [ ] **Step 3: Implement bounded fan-out**
+- [ ] **Step 3: 제한된 fan-out 구현**
 
-Use:
+사용:
 
 - `require_not_blank`, `require_positive`
 - `CorrelationId`
 - `bluetape_rs_collections::{iter, Page}`
 - `bluetape_rs_async::{map_bounded_collect, with_timeout_or_cancel, CancellationSource}`
-- `tracing::info!` and `tracing::warn!`
+- `tracing::info!`와 `tracing::warn!`
 
-Provider fixtures stay in memory. Required provider errors fail the request.
-Optional provider errors append warning strings to the returned view.
+Provider fixture는 메모리에 유지한다. 필수 provider 오류는 요청을
+실패시킨다. 선택 provider 오류는 반환할 view에 warning 문자열을 추가한다.
 
-- [ ] **Step 4: Run GREEN test**
+- [ ] **Step 4: GREEN 테스트 실행**
 
-Run:
+실행:
 
 ```bash
 cargo test -p catalog-enrichment-fanout
 ```
 
-Expected: all tests pass.
+예상: 모든 테스트가 통과한다.
 
-- [ ] **Step 5: Add bilingual README**
+- [ ] **Step 5: 이중 언어 README 추가**
 
-README files must document the required-vs-optional provider contract and:
+README 파일은 필수 provider와 선택 provider의 계약을 설명하고 다음 명령을
+포함해야 한다.
 
 ```bash
 cargo test -p catalog-enrichment-fanout
@@ -232,91 +241,92 @@ cargo test -p catalog-enrichment-fanout
 
 complexity: high
 
-Apply `$bluetape-rs-patterns`: explicit async lifecycle, timeout and shutdown tests, no blocking work on async tasks.
+`$bluetape-rs-patterns`를 적용한다. 명시적인 async lifecycle, timeout 및
+shutdown 테스트를 사용하고 async task에서 blocking 작업을 실행하지 않는다.
 
-**Files:**
-- Create: `examples/shutdown-aware-worker/Cargo.toml`
-- Create: `examples/shutdown-aware-worker/README.md`
-- Create: `examples/shutdown-aware-worker/README.ko.md`
-- Create: `examples/shutdown-aware-worker/src/lib.rs`
-- Create: `examples/shutdown-aware-worker/src/domain.rs`
-- Create: `examples/shutdown-aware-worker/src/error.rs`
-- Create: `examples/shutdown-aware-worker/src/worker.rs`
-- Create: `examples/shutdown-aware-worker/src/tests.rs`
+**파일:**
+- 생성: `examples/shutdown-aware-worker/Cargo.toml`
+- 생성: `examples/shutdown-aware-worker/README.md`
+- 생성: `examples/shutdown-aware-worker/README.ko.md`
+- 생성: `examples/shutdown-aware-worker/src/lib.rs`
+- 생성: `examples/shutdown-aware-worker/src/domain.rs`
+- 생성: `examples/shutdown-aware-worker/src/error.rs`
+- 생성: `examples/shutdown-aware-worker/src/worker.rs`
+- 생성: `examples/shutdown-aware-worker/src/tests.rs`
 
-- [ ] **Step 1: Write tests first**
+- [ ] **Step 1: 테스트를 먼저 작성**
 
-Tests must cover:
+테스트는 다음을 다뤄야 한다.
 
-- worker completes normal work
-- invalid config fails
-- timeout returns typed timeout
-- shutdown/cancellation returns typed cancelled state
+- worker가 정상 작업을 완료한다.
+- 잘못된 설정은 실패한다.
+- timeout은 타입이 지정된 timeout을 반환한다.
+- shutdown/취소는 타입이 지정된 cancelled 상태를 반환한다.
 
-Keep `lib.rs` to crate Rustdoc, module declarations, and re-exports.
+`lib.rs`에는 crate Rustdoc, 모듈 선언, re-export만 둔다.
 
-- [ ] **Step 2: Run RED test**
+- [ ] **Step 2: RED 테스트 실행**
 
-Run:
+실행:
 
 ```bash
 cargo test -p shutdown-aware-worker
 ```
 
-Expected: fails before implementation is complete.
+예상: 구현이 완료되기 전에는 실패한다.
 
-- [ ] **Step 3: Implement worker**
+- [ ] **Step 3: worker 구현**
 
-Use:
+사용:
 
 - `require_not_blank`, `require_positive`
 - `CorrelationId`
 - `bluetape_rs_collections::iter::group_by`
 - `bluetape_rs_async::{shutdown_signal, with_timeout, AsyncControlError}`
-- `tokio::time::sleep` for deterministic simulated work
+- 결정적인 simulated work를 위한 `tokio::time::sleep`
 - `tracing::info!`
 
-Return a `WorkerReport` with processed count and final status.
+처리 개수와 최종 상태를 포함한 `WorkerReport`를 반환한다.
 
-- [ ] **Step 4: Run GREEN test**
+- [ ] **Step 4: GREEN 테스트 실행**
 
-Run:
-
-```bash
-cargo test -p shutdown-aware-worker
-```
-
-Expected: all tests pass.
-
-- [ ] **Step 5: Add bilingual README**
-
-README files must explain the cancellation contract and:
+실행:
 
 ```bash
 cargo test -p shutdown-aware-worker
 ```
 
-## Task 5: Root Documentation
+예상: 모든 테스트가 통과한다.
+
+- [ ] **Step 5: 이중 언어 README 추가**
+
+README 파일은 취소 계약을 설명하고 다음 명령을 포함해야 한다.
+
+```bash
+cargo test -p shutdown-aware-worker
+```
+
+## Task 5: 루트 문서
 
 complexity: medium
 
-**Files:**
-- Modify: `README.md`
-- Modify: `README.ko.md`
-- Modify: `WIP.md`
+**파일:**
+- 수정: `README.md`
+- 수정: `README.ko.md`
+- 수정: `WIP.md`
 
-- [ ] **Step 1: Update root README example table**
+- [ ] **Step 1: 루트 README 예제 표 업데이트**
 
-Add a `Milestone 0.2.0: Collections and Async Examples` section with rows for
-all three new examples and exact package test commands.
+세 새 예제와 정확한 package 테스트 명령을 행으로 포함하는
+`Milestone 0.2.0: Collections and Async Examples` 섹션을 추가한다.
 
-- [ ] **Step 2: Update Korean README**
+- [ ] **Step 2: Korean README 업데이트**
 
-Mirror the English content with Korean descriptions and exact same commands.
+영어 내용을 한국어 설명과 동일한 명령으로 미러링한다.
 
-- [ ] **Step 3: Update `WIP.md`**
+- [ ] **Step 3: `WIP.md` 업데이트**
 
-Add a `0.2.0 Delivery Scope` table:
+다음 `0.2.0 Delivery Scope` 표를 추가한다.
 
 | Issue | Example | bluetape-rs APIs | Done When |
 |---|---|---|---|
@@ -324,35 +334,35 @@ Add a `0.2.0 Delivery Scope` table:
 | #7 | `batched-order-windowing` | `core`, `logging`, `collections` | deterministic grouping, chunking, paging |
 | #8 | `shutdown-aware-worker` | `core`, `logging`, `collections`, `async` | bounded shutdown, timeout, cancellation |
 
-- [ ] **Step 4: Verify docs against source**
+- [ ] **Step 4: 문서를 source와 대조해 검증**
 
-Run:
+실행:
 
 ```bash
 rg -n "batched-order-windowing|catalog-enrichment-fanout|shutdown-aware-worker" README.md README.ko.md WIP.md Cargo.toml examples
 ```
 
-Expected: package names and commands appear consistently.
+예상: package name과 명령이 일관되게 나타난다.
 
-## Task 6: Validation
+## Task 6: 검증
 
 complexity: medium
 
-**Files:** all changed files.
+**파일:** 변경한 모든 파일.
 
-- [ ] **Step 1: Run formatting**
+- [ ] **Step 1: 포맷 검사 실행**
 
-Run:
+실행:
 
 ```bash
 cargo fmt --all --check
 ```
 
-Expected: exit 0.
+예상: exit 0.
 
-- [ ] **Step 2: Run targeted tests**
+- [ ] **Step 2: 대상 테스트 실행**
 
-Run:
+실행:
 
 ```bash
 cargo test -p batched-order-windowing
@@ -360,65 +370,66 @@ cargo test -p catalog-enrichment-fanout
 cargo test -p shutdown-aware-worker
 ```
 
-Expected: exit 0 for all.
+예상: 모두 exit 0.
 
-- [ ] **Step 3: Run workspace tests and clippy**
+- [ ] **Step 3: workspace 테스트와 clippy 실행**
 
-Run:
+실행:
 
 ```bash
 cargo test --workspace --all-features
 cargo clippy --workspace --all-targets --all-features -- -D warnings
 ```
 
-Expected: exit 0 for both.
+예상: 두 명령 모두 exit 0.
 
-- [ ] **Step 4: Run repository gate**
+- [ ] **Step 4: repository 게이트 실행**
 
-Run:
+실행:
 
 ```bash
 make ci
 git diff --check
 ```
 
-Expected: exit 0 for both.
+예상: 두 명령 모두 exit 0.
 
-## Task 7: Review, Lessons, PR
+## Task 7: 검토, lessons, PR
 
 complexity: medium
 
-**Files:**
-- Create: `docs/review/2026-06-13-milestone-0-2-0-code-review.md`
-- Create: `docs/lessons/2026-06-13-milestone-0-2-0-examples.md`
+**파일:**
+- 생성: `docs/review/2026-06-13-milestone-0-2-0-code-review.md`
+- 생성: `docs/lessons/2026-06-13-milestone-0-2-0-examples.md`
 
-- [ ] **Step 1: Step 6-R code review**
+- [ ] **Step 1: Step 6-R 코드 검토**
 
-Run local/native six-lane review against the final diff. Record P0/P1/P2/P3 in
-`docs/review/2026-06-13-milestone-0-2-0-code-review.md`.
+최종 diff에 대해 local/native six-lane 검토를 실행한다. P0/P1/P2/P3을
+`docs/review/2026-06-13-milestone-0-2-0-code-review.md`에 기록한다.
 
-- [ ] **Step 2: Commit lessons before PR**
+- [ ] **Step 2: PR 전에 lessons 커밋**
 
-Create `docs/lessons/2026-06-13-milestone-0-2-0-examples.md` with what changed,
-what was surprising, and validation evidence. Commit it before PR creation.
+변경 사항, 예상 밖의 결과, 검증 증거를 포함한
+`docs/lessons/2026-06-13-milestone-0-2-0-examples.md`를 생성한다. PR 생성
+전에 커밋한다.
 
-- [ ] **Step 3: Create PR**
+- [ ] **Step 3: PR 생성**
 
-Push branch and create PR with title:
+브랜치를 push하고 다음 제목으로 PR을 생성한다.
 
 ```text
 feat: add milestone 0.2.0 collections and async examples
 ```
 
-PR body must include `Closes #6`, `Closes #7`, `Closes #8`, reference #5, and end
-with `## DoD Status`.
+PR 본문에는 `Closes #6`, `Closes #7`, `Closes #8`을 포함하고 #5를
+참조하며 `## DoD Status`로 끝내야 한다.
 
-## Self-Review
+## 자체 검토
 
-- Spec coverage: every acceptance criterion maps to Tasks 1-7.
-- Open-item scan: no deferred or unspecified implementation tasks.
-- Type consistency: package names are kebab-case; Rust module crates resolve to
-  snake_case by Cargo; `lib.rs` files stay as export surfaces and do not hold all
-  implementation code.
-- Risk coverage: async timeout/cancellation, provider failure separation,
-  deterministic ordering, and README source-drift checks are assigned.
+- Spec coverage: 모든 승인 기준이 Task 1-7에 매핑된다.
+- Open-item scan: 보류되거나 명시되지 않은 구현 작업이 없다.
+- Type consistency: package name은 kebab-case이고, Rust module crate는
+  Cargo에 의해 snake_case로 resolve된다. `lib.rs` 파일은 export 표면으로
+  유지하며 모든 구현 코드를 담지 않는다.
+- Risk coverage: async timeout/취소, provider 실패 분리, 결정적 순서,
+  README source-drift 검사를 할당했다.
